@@ -17,7 +17,7 @@ use Symfony\Component\Process\Exception\ProcessTimedOutException;
 use Symfony\Component\Process\Exception\RuntimeException;
 
 /**
- * Process is a thin wrapper around proc_* functions to ease
+ * Process is a thin wrapper around proc_* functions to easily
  * start independent PHP processes.
  *
  * @author Fabien Potencier <fabien@symfony.com>
@@ -142,8 +142,8 @@ class Process
         $this->commandline = $commandline;
         $this->cwd = $cwd;
 
-        // on windows, if the cwd changed via chdir(), proc_open defaults to the dir where php was started
-        // on gnu/linux, PHP builds with --enable-maintainer-zts are also affected
+        // on Windows, if the cwd changed via chdir(), proc_open defaults to the dir where PHP was started
+        // on Gnu/Linux, PHP builds with --enable-maintainer-zts are also affected
         // @see : https://bugs.php.net/bug.php?id=51800
         // @see : https://bugs.php.net/bug.php?id=50524
 
@@ -251,6 +251,13 @@ class Process
         $this->status = self::STATUS_STARTED;
 
         $this->processPipes->unblock();
+
+        if ($this->tty) {
+            $this->status = self::STATUS_TERMINATED;
+
+            return;
+        }
+
         $this->processPipes->write(false, $this->stdin);
         $this->updateStatus(false);
         $this->checkTimeout();
@@ -345,9 +352,9 @@ class Process
     }
 
     /**
-     * Sends a posix signal to the process.
+     * Sends a POSIX signal to the process.
      *
-     * @param  integer $signal A valid posix signal (see http://www.php.net/manual/en/pcntl.constants.php)
+     * @param  integer $signal A valid POSIX signal (see http://www.php.net/manual/en/pcntl.constants.php)
      * @return Process
      *
      * @throws LogicException   In case the process is not running
@@ -644,7 +651,7 @@ class Process
      * Stops the process.
      *
      * @param integer|float $timeout The timeout in seconds
-     * @param integer       $signal  A posix signal to send in case the process has not stop at timeout, default is SIGKILL
+     * @param integer       $signal  A POSIX signal to send in case the process has not stop at timeout, default is SIGKILL
      *
      * @return integer The exit-code of the process
      *
@@ -723,7 +730,7 @@ class Process
     }
 
     /**
-     * Gets the process timeout.
+     * Gets the process timeout (max. runtime).
      *
      * @return float|null The timeout in seconds or null if it's disabled
      */
@@ -733,9 +740,9 @@ class Process
     }
 
     /**
-     * Gets the process idle timeout.
+     * Gets the process idle timeout (max. time since last output).
      *
-     * @return float|null
+     * @return float|null The timeout in seconds or null if it's disabled
      */
     public function getIdleTimeout()
     {
@@ -743,7 +750,7 @@ class Process
     }
 
     /**
-     * Sets the process timeout.
+     * Sets the process timeout (max. runtime).
      *
      * To disable the timeout, set this value to null.
      *
@@ -761,9 +768,11 @@ class Process
     }
 
     /**
-     * Sets the process idle timeout.
+     * Sets the process idle timeout (max. time since last output).
      *
-     * @param integer|float|null $timeout
+     * To disable the timeout, set this value to null.
+     *
+     * @param integer|float|null $timeout The timeout in seconds
      *
      * @return self The current Process instance.
      *
@@ -791,7 +800,7 @@ class Process
     }
 
     /**
-     * Checks if  the TTY mode is enabled.
+     * Checks if the TTY mode is enabled.
      *
      * @return Boolean true if the TTY mode is enabled, false otherwise
      */
@@ -984,7 +993,7 @@ class Process
             throw new ProcessTimedOutException($this, ProcessTimedOutException::TYPE_GENERAL);
         }
 
-        if (0 < $this->idleTimeout && $this->idleTimeout < microtime(true) - $this->lastOutputTime) {
+        if (null !== $this->idleTimeout && $this->idleTimeout < microtime(true) - $this->lastOutputTime) {
             $this->stop(0);
 
             throw new ProcessTimedOutException($this, ProcessTimedOutException::TYPE_IDLE);
@@ -998,7 +1007,7 @@ class Process
      */
     private function getDescriptors()
     {
-        $this->processPipes = new ProcessPipes($this->useFileHandles);
+        $this->processPipes = new ProcessPipes($this->useFileHandles, $this->tty);
         $descriptors = $this->processPipes->getDescriptors();
 
         if (!$this->useFileHandles && $this->enhanceSigchildCompatibility && $this->isSigchildEnabled()) {
@@ -1123,7 +1132,7 @@ class Process
     }
 
     /**
-     * Captures the exitcode if mentioned in the process informations.
+     * Captures the exitcode if mentioned in the process information.
      */
     private function captureExitCode()
     {
@@ -1152,7 +1161,7 @@ class Process
         if (-1 == $this->exitcode && null !== $this->fallbackExitcode) {
             $this->exitcode = $this->fallbackExitcode;
         } elseif (-1 === $this->exitcode && $this->processInformation['signaled'] && 0 < $this->processInformation['termsig']) {
-            // if process has been signaled, no exitcode but a valid termsig, apply unix convention
+            // if process has been signaled, no exitcode but a valid termsig, apply Unix convention
             $this->exitcode = 128 + $this->processInformation['termsig'];
         }
 

@@ -70,6 +70,9 @@ abstract class AbstractToken implements TokenInterface
         return (string) $this->user;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getUser()
     {
         return $this->user;
@@ -142,7 +145,14 @@ abstract class AbstractToken implements TokenInterface
      */
     public function serialize()
     {
-        return serialize(array($this->user, $this->authenticated, $this->roles, $this->attributes));
+        return serialize(
+            array(
+                is_object($this->user) ? clone $this->user : $this->user,
+                $this->authenticated,
+                $this->roles,
+                $this->attributes
+            )
+        );
     }
 
     /**

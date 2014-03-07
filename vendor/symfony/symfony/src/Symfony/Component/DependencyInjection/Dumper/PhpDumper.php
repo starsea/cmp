@@ -69,7 +69,7 @@ class PhpDumper extends Dumper
     {
         parent::__construct($container);
 
-        $this->inlinedDefinitions = new \SplObjectStorage;
+        $this->inlinedDefinitions = new \SplObjectStorage();
     }
 
     /**
@@ -980,6 +980,8 @@ EOF;
                 throw new InvalidArgumentException(sprintf('You cannot dump a container with parameters that contain service definitions. Definition for "%s" found in "%s".', $value->getClass(), $path.'/'.$key));
             } elseif ($value instanceof Reference) {
                 throw new InvalidArgumentException(sprintf('You cannot dump a container with parameters that contain references to other services (reference to service "%s" found in "%s").', $value, $path.'/'.$key));
+            } elseif ($value instanceof Expression) {
+                throw new InvalidArgumentException(sprintf('You cannot dump a container with parameters that contain expressions. Expression "%s" found in "%s".', $value, $path.'/'.$key));
             } else {
                 $value = var_export($value, true);
             }

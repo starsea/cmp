@@ -236,7 +236,7 @@ class SecurityExtension extends Extension
         $mapDef->replaceArgument(1, $map);
 
         // add authentication providers to authentication manager
-        $authenticationProviders = array_map(function($id) {
+        $authenticationProviders = array_map(function ($id) {
             return new Reference($id);
         }, array_values(array_unique($authenticationProviders)));
         $container
@@ -682,7 +682,7 @@ class SecurityExtension extends Extension
     {
         if (null === $this->expressionLanguage) {
             if (!class_exists('Symfony\Component\ExpressionLanguage\ExpressionLanguage')) {
-                throw new RuntimeException('Unable to use expressions as the Symfony ExpressionLanguage component is not installed.');
+                throw new \RuntimeException('Unable to use expressions as the Symfony ExpressionLanguage component is not installed.');
             }
             $this->expressionLanguage = new ExpressionLanguage();
         }

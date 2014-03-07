@@ -224,6 +224,11 @@ class FormTest extends \PHPUnit_Framework_TestCase
                  array('foobar' => array('InputFormField', 'foobar')),
             ),
             array(
+                'turns an image input into x and y fields',
+                '<input type="image" name="bar" />',
+                array('bar.x' => array('InputFormField', '0'), 'bar.y' => array('InputFormField', '0')),
+            ),
+            array(
                 'returns textareas',
                 '<textarea name="foo">foo</textarea>
                  <input type="submit" />',
@@ -269,6 +274,16 @@ class FormTest extends \PHPUnit_Framework_TestCase
         $dom->loadHTML('<html><form><input type="submit" /></form></html>');
 
         $form = new Form($dom->getElementsByTagName('input')->item(0), 'http://example.com');
+
+        $this->assertSame($dom->getElementsByTagName('form')->item(0), $form->getFormNode(), '->getFormNode() returns the form node associated with this form');
+    }
+
+    public function testGetFormNodeFromNamedForm()
+    {
+        $dom = new \DOMDocument();
+        $dom->loadHTML('<html><form name="my_form"><input type="submit" /></form></html>');
+
+        $form = new Form($dom->getElementsByTagName('form')->item(0), 'http://example.com');
 
         $this->assertSame($dom->getElementsByTagName('form')->item(0), $form->getFormNode(), '->getFormNode() returns the form node associated with this form');
     }
