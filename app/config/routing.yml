@@ -1,0 +1,5 @@
+company_blog:
+    resource: "@CompanyBlogBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
