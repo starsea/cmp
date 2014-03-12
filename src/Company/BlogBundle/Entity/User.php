@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Company\BlogBundle\Repository\UserRepository")
  * @ORM\Table(name="user")
  */
 class User
@@ -49,9 +49,6 @@ class User
      */
     protected $createdAt;
 
-
-
-
     /**
      * Constructs a new instance of User
      */
@@ -61,7 +58,6 @@ class User
         $this->createdAt = new \DateTime();
     }
 
-    //...
 
     /**
      * Get id
