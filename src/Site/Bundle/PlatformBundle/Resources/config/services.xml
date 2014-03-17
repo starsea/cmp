@@ -6,11 +6,11 @@
 
     <!--
     <parameters>
-        <parameter key="company_blog.example.class">Company\BlogBundle\Example</parameter>
+        <parameter key="site_platform.example.class">Site\Bundle\PlatformBundle\Example</parameter>
     </parameters>
 
     <services>
-        <service id="company_blog.example" class="%company_blog.example.class%">
+        <service id="site_platform.example" class="%site_platform.example.class%">
             <argument type="service" id="service_id" />
             <argument>plain_value</argument>
             <argument>%parameter_name%</argument>

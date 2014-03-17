@@ -1,5 +1,4 @@
-company_blog:
-    resource: "@CompanyBlogBundle/Controller/"
+site_platform:
+    resource: "@SitePlatformBundle/Controller/"
     type:     annotation
     prefix:   /
-

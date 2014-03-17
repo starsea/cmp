@@ -22,18 +22,12 @@ class User
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=100, name="first_name")
+     * @ORM\Column(type="string", length=100, name="name")
      *
-     * @var string $firstName
+     * @var string $name
      */
-    protected $firstName;
+    protected $name;
 
-    /**
-     * @ORM\Column(type="string", length=100, name="last_name")
-     *
-     * @var string $lastName
-     */
-    protected $lastName;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -70,49 +64,26 @@ class User
     }
 
     /**
-     * Set firstName
+     * Set name
      *
-     * @param string $firstName
+     * @param string $name
      * @return User
      */
-    public function setFirstName($firstName)
+    public function setName($name)
     {
-        $this->firstName = $firstName;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get firstName
+     * Get name
      *
      * @return string 
      */
-    public function getFirstName()
+    public function getName()
     {
-        return $this->firstName;
-    }
-
-    /**
-     * Set lastName
-     *
-     * @param string $lastName
-     * @return User
-     */
-    public function setLastName($lastName)
-    {
-        $this->lastName = $lastName;
-
-        return $this;
-    }
-
-    /**
-     * Get lastName
-     *
-     * @return string 
-     */
-    public function getLastName()
-    {
-        return $this->lastName;
+        return $this->name;
     }
 
     /**
