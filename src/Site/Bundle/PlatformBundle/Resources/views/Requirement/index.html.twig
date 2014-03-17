@@ -1,0 +1,57 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>需求列表</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>需求主题</th>
+                <th>客户单位</th>
+                <th>客户行业</th>
+                <th>Background</th>
+                <th>Description</th>
+                <th>Starttime</th>
+                <th>Endtime</th>
+                <th>Status</th>
+                <th>分类</th>
+                <th>发起人</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('requirement_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.subject }}</td>
+                <td>{{ entity.company }}</td>
+                <td>{{ entity.background }}</td>
+                <td>{{ entity.description }}</td>
+                <td>{% if entity.startTime %}{{ entity.startTime|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.endTime %}{{ entity.endTime|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.status }}</td>
+                <td>{{ entity.category }}</td>
+                <td>{{ entity.initiator }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('requirement_show', { 'id': entity.id }) }}">详细信息</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('requirement_edit', { 'id': entity.id }) }}">编辑</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('requirement_new') }}">
+                添加
+            </a>
+        </li>
+    </ul>
+    {% endblock %}
