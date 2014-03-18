@@ -39,9 +39,17 @@ class RequirementController extends Controller
                 'required' => false,
                 'label' => '需求主题',
             ))
-            ->add('company', 'text', array('required' => false))
+            ->add('company', 'text', array(
+                'required' => false
+            ))
             ->add('status', 'choice', array(
                 'choices' => $requirement::$statusZhArr,
+                'required' => false,
+                'empty_value' => '当前状态',
+                'empty_data' => null
+            ))
+            ->add('category', 'choice', array(
+                'choices' => $requirement::$categoryZhArr,
                 'required' => false,
                 'empty_value' => '当前状态',
                 'empty_data' => null
@@ -52,9 +60,6 @@ class RequirementController extends Controller
             ))
             ->add('endTime','date',array(
                 'widget' => 'single_text',
-                'required' => false,
-            ))
-            ->add('background','country',array(
                 'required' => false,
             ))
             ->getForm();

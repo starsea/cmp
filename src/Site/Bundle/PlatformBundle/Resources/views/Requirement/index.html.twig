@@ -6,12 +6,12 @@
     </a>
 
 
-    <form action="{{ path('requirement') }}" method ="get" {{ form_enctype(form) }}>
+    <form action="{{ path('requirement') }}" method="get" {{ form_enctype(form) }}>
         {{ form_widget(form) }}
 
-        <input type="submit" />
+        <input type="submit" value="搜索"/>
     </form>
-<!--
+    <!--
     <form action="{{ path('requirement') }}" method="get">
         <ul style="list-style: none;" class="search">
             <li>
@@ -74,5 +74,19 @@
         </tbody>
     </table>
 
+    <ul>
+        <li><span class="in_text">联系地址：</span><span><select name="province" id="province"></select></span>省</li>
+        <li><span class="in_text1"><select name="city" id="city"></select></span>市</li>
+    </ul>
 
+{% endblock %}
+{% block javascripts %}
+    {% javascripts '@SitePlatformBundle/Resources/public/js/PCASClass.utf8.js' %}
+    <script src="{{ asset_url }}" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        new PCAS("province","city");
+    </script>
+
+    {% endjavascripts %}
 {% endblock %}

@@ -17,12 +17,20 @@ class Requirement
     const STATUS_PROCESS = 3;
     const STATUS_OVER = 4;
 
+    const CATEGORY_ONLINE = 1;
+    const CATEGORY_OFFLINE = 2;
+
     // 需求状态
     public static $statusZhArr = array(
         self::STATUS_COMMUNICATION => '客户沟通',
         self::STATUS_COLLECTION => '需求收集',
         self::STATUS_PROCESS => '项目进行',
         self::STATUS_OVER => '需求结束'
+    );
+
+    public static $categoryZhArr = array(
+        self::CATEGORY_ONLINE => '线上需求',
+        self::CATEGORY_OFFLINE => '线下需求',
     );
 
     /**
@@ -332,17 +340,6 @@ class Requirement
         return $this->initiator;
     }
 
-    /**
-     * Get status for chinese
-     *
-     * @return string
-     */
-    public function getStatusZh()
-    {
-        $status = self::$statusZhArr;
-        return $status[$this->status];
-    }
-
 
     /**
      * Set province
@@ -360,7 +357,7 @@ class Requirement
     /**
      * Get province
      *
-     * @return string 
+     * @return string
      */
     public function getProvince()
     {
@@ -383,10 +380,34 @@ class Requirement
     /**
      * Get city
      *
-     * @return string 
+     * @return string
      */
     public function getCity()
     {
         return $this->city;
+    }
+
+
+    /**
+     * Get status for chinese
+     *
+     * @return string
+     */
+    public function getStatusZh()
+    {
+        $status = self::$statusZhArr;
+        return $status[$this->status];
+    }
+
+
+    /**
+     * Get category for chinese
+     *
+     * @return string
+     */
+    public function getCategoryZh()
+    {
+        $category = self::$categoryZhArr;
+        return $category[$this->$category];
     }
 }
