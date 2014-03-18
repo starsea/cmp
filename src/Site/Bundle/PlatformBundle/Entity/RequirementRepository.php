@@ -12,4 +12,38 @@ use Doctrine\ORM\EntityRepository;
  */
 class RequirementRepository extends EntityRepository
 {
+
+    //需求搜索列表
+    public function getListBy($data)
+    {
+        $qb = $this->createQueryBuilder('i');
+
+
+        foreach ($data as $field => $value) {
+
+            if (!$this->getClassMetadata()->hasField($field)) {
+                continue;
+            }
+            // like
+            if (in_array($field, array('subject', 'company'))) {
+                $qb->andWhere('i.' . $field . ' like ' . ':' . $field)
+                    ->setParameter($field, '%' . $value . '%');
+                continue;
+            }
+
+//            // 时间 array
+//            if (in_array($field, array('startTime', 'endTime'))) {
+//
+//                $qb->andWhere('i.' . $field . ' = ' . ':' . $field)
+//                    ->setParameter($field, $value['year'].'-'.$value['month'].'-'.$value['day']);
+//                continue;
+//            }
+
+            $qb->andWhere($qb->expr()->eq('i.' . $field, ':' . $field))
+                ->setParameter($field, $value);
+        }
+
+       var_dump( $qb->getQuery()->getParameters());
+        return $qb->getQuery()->getResult();
+    }
 }

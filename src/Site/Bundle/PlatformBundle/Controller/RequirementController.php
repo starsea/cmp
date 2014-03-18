@@ -26,16 +26,96 @@ class RequirementController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        new Requirement();
+
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('SitePlatformBundle:Requirement')->findAll();
+        $requirement = new Requirement();
+
+        //list search form
+        $form = $this->createFormBuilder($requirement)
+            ->add('subject', 'text', array(
+                'required' => false,
+                'label' => '需求主题',
+            ))
+            ->add('company', 'text', array('required' => false))
+            ->add('status', 'choice', array(
+                'choices' => $requirement::$statusZhArr,
+                'required' => false,
+                'empty_value' => '当前状态',
+                'empty_data' => null
+            ))
+            ->add('startTime','date',array(
+                'widget' => 'single_text',
+                'required' => false,
+            ))
+            ->add('endTime','date',array(
+                'widget' => 'single_text',
+                'required' => false,
+            ))
+            ->add('background','country',array(
+                'required' => false,
+            ))
+            ->getForm();
+
+
+        if (!$request->query->get('form')) {
+
+            $entities = $em->getRepository('SitePlatformBundle:Requirement')->findAll();
+
+        } else {
+            var_dump($request->query->get('form'));
+            $params = array_filter($request->query->get('form'));
+
+            $entities = $em->getRepository('SitePlatformBundle:Requirement')->getListBy($params);
+        };
+
 
         return array(
             'entities' => $entities,
+            'form' => $form->createView(),
         );
+
+    }
+
+
+    /**
+     * search all Requirement entities.
+     *
+     * @Route("/search", name="requirement_search")
+     * @Method("GET")
+     * @Template()
+     */
+    public function searchAction(Request $request)
+    {
+
+        $params = array_filter($request->query->get('form'));
+
+//        var_dump($request->query->get('form'));
+        $em = $this->getDoctrine()->getManager();
+
+        $entities = $em->getRepository('SitePlatformBundle:Requirement')->getListBy($params);
+
+        $requirement = new Requirement();
+
+        //list search form
+        $form = $this->createFormBuilder($requirement)
+            ->add('subject', 'text', array('required' => false))
+            ->add('company', 'text', array('required' => false))
+            ->add('status', 'choice', array(
+                'choices' => $requirement::$statusZhArr,
+                'required' => false,
+                'empty_value' => '当前状态',
+                'empty_data' => null
+            ))
+            ->getForm();
+
+        return array(
+            'entities' => $entities,
+            'form' => $form->createView(),
+        );
+
     }
 
 

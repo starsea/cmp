@@ -18,7 +18,7 @@ class Requirement
     const STATUS_OVER = 4;
 
     // 需求状态
-    public static $currStatus = array(
+    public static $statusZhArr = array(
         self::STATUS_COMMUNICATION => '客户沟通',
         self::STATUS_COLLECTION => '需求收集',
         self::STATUS_PROCESS => '项目进行',
@@ -51,6 +51,21 @@ class Requirement
     /**
      * @var string
      *
+     * @ORM\Column(name="province", type="string", length=255)
+     */
+    private $province;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="city", type="string", length=255)
+     */
+    private $city;
+
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="background", type="text")
      */
     private $background;
@@ -65,14 +80,14 @@ class Requirement
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="start_time", type="datetime")
+     * @ORM\Column(name="start_time", type="date")
      */
     private $startTime;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="end_time", type="datetime")
+     * @ORM\Column(name="end_time", type="date")
      */
     private $endTime;
 
@@ -315,5 +330,63 @@ class Requirement
     public function getInitiator()
     {
         return $this->initiator;
+    }
+
+    /**
+     * Get status for chinese
+     *
+     * @return string
+     */
+    public function getStatusZh()
+    {
+        $status = self::$statusZhArr;
+        return $status[$this->status];
+    }
+
+
+    /**
+     * Set province
+     *
+     * @param string $province
+     * @return Requirement
+     */
+    public function setProvince($province)
+    {
+        $this->province = $province;
+
+        return $this;
+    }
+
+    /**
+     * Get province
+     *
+     * @return string 
+     */
+    public function getProvince()
+    {
+        return $this->province;
+    }
+
+    /**
+     * Set city
+     *
+     * @param string $city
+     * @return Requirement
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return string 
+     */
+    public function getCity()
+    {
+        return $this->city;
     }
 }
