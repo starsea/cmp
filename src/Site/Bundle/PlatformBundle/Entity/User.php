@@ -37,10 +37,19 @@ class User
     protected $email;
 
     /**
+     * @ORM\Column(type="password", name="password")
+     *
+     * @var string $password
+     */
+
+    protected $password;
+
+    /**
      * @ORM\Column(type="datetime", name="created_at")
      *
-     * @var DateTime $createdAt
+     * @var \DateTime $createdAt
      */
+
     protected $createdAt;
 
     /**

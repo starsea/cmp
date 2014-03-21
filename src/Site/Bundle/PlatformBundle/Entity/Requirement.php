@@ -12,26 +12,28 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Requirement
 {
-    const STATUS_COMMUNICATION = 1;
-    const STATUS_COLLECTION = 2;
-    const STATUS_PROCESS = 3;
-    const STATUS_OVER = 4;
+    const SPORTS_BASKETBALL = 'basketball';
+    const SPORTS_FOOTBALL = 'football';
+    const SPORTS_BADMINTON = 'badminton';
+    const SPORTS_TENNIS = 'tennis';
+    const SPORTS_PINGPANG = 'pingpang';
+    const SPORTS_OTHER= 'other';
 
-    const CATEGORY_ONLINE = 1;
-    const CATEGORY_OFFLINE = 2;
 
-    // 需求状态
-    public static $statusZhArr = array(
-        self::STATUS_COMMUNICATION => '客户沟通',
-        self::STATUS_COLLECTION => '需求收集',
-        self::STATUS_PROCESS => '项目进行',
-        self::STATUS_OVER => '需求结束'
+
+
+
+
+    // 运动项目
+    public static $sportsZhArr = array(
+        self::SPORTS_BASKETBALL => '乒乓球',
+        self::SPORTS_FOOTBALL => '足球',
+        self::SPORTS_BADMINTON => '羽毛球',
+        self::SPORTS_TENNIS => '网球',
+        self::SPORTS_PINGPANG => '乒乓球',
+        self::SPORTS_OTHER => '其他',
     );
 
-    public static $categoryZhArr = array(
-        self::CATEGORY_ONLINE => '线上需求',
-        self::CATEGORY_OFFLINE => '线下需求',
-    );
 
     /**
      * @var integer
@@ -43,14 +45,22 @@ class Requirement
     private $id;
 
     /**
-     * @var string
+     * @var string //需求主题
      *
      * @ORM\Column(name="subject", type="string", length=255)
      */
     private $subject;
 
     /**
-     * @var string
+     * @var string //运动项目
+     *
+     * @ORM\Column(name="sports", type="string", length=255)
+     */
+    private $sports;
+
+
+    /**
+     * @var string //单位性质
      *
      * @ORM\Column(name="company", type="string", length=255)
      */
@@ -71,15 +81,9 @@ class Requirement
     private $city;
 
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="background", type="text")
-     */
-    private $background;
 
     /**
-     * @var string
+     * @var string //需求简述
      *
      * @ORM\Column(name="description", type="text")
      */
@@ -88,43 +92,29 @@ class Requirement
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="start_time", type="date")
+     * //更新时间
+     *
+     * @ORM\Column(name="update_time", type="date")
      */
-    private $startTime;
+    private $update_time;
+
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="end_time", type="date")
-     */
-    private $endTime;
-
-    /**
-     * @var string
+     * //报告时间
      *
-     * @ORM\Column(name="status", type="string", length=255)
+     * @ORM\Column(name="report_time", type="date")
      */
-    private $status;
+    private $report_time;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="category", type="string", length=255)
-     */
-    private $category;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="initiator", type="string", length=255)
-     */
-    private $initiator;
 
 
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -147,11 +137,34 @@ class Requirement
     /**
      * Get subject
      *
-     * @return string
+     * @return string 
      */
     public function getSubject()
     {
         return $this->subject;
+    }
+
+    /**
+     * Set sports
+     *
+     * @param string $sports
+     * @return Requirement
+     */
+    public function setSports($sports)
+    {
+        $this->sports = $sports;
+
+        return $this;
+    }
+
+    /**
+     * Get sports
+     *
+     * @return string 
+     */
+    public function getSports()
+    {
+        return $this->sports;
     }
 
     /**
@@ -170,176 +183,12 @@ class Requirement
     /**
      * Get company
      *
-     * @return string
+     * @return string 
      */
     public function getCompany()
     {
         return $this->company;
     }
-
-    /**
-     * Set background
-     *
-     * @param string $background
-     * @return Requirement
-     */
-    public function setBackground($background)
-    {
-        $this->background = $background;
-
-        return $this;
-    }
-
-    /**
-     * Get background
-     *
-     * @return string
-     */
-    public function getBackground()
-    {
-        return $this->background;
-    }
-
-    /**
-     * Set description
-     *
-     * @param string $description
-     * @return Requirement
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * Set startTime
-     *
-     * @param \DateTime $startTime
-     * @return Requirement
-     */
-    public function setStartTime($startTime)
-    {
-        $this->startTime = $startTime;
-
-        return $this;
-    }
-
-    /**
-     * Get startTime
-     *
-     * @return \DateTime
-     */
-    public function getStartTime()
-    {
-        return $this->startTime;
-    }
-
-    /**
-     * Set endTime
-     *
-     * @param \DateTime $endTime
-     * @return Requirement
-     */
-    public function setEndTime($endTime)
-    {
-        $this->endTime = $endTime;
-
-        return $this;
-    }
-
-    /**
-     * Get endTime
-     *
-     * @return \DateTime
-     */
-    public function getEndTime()
-    {
-        return $this->endTime;
-    }
-
-    /**
-     * Set status
-     *
-     * @param string $status
-     * @return Requirement
-     */
-    public function setStatus($status)
-    {
-        $this->status = $status;
-
-        return $this;
-    }
-
-    /**
-     * Get status
-     *
-     * @return string
-     */
-    public function getStatus()
-    {
-//        $status = self::$currStatus;
-//        return $status[$this->status];
-        return $this->status;
-    }
-
-    /**
-     * Set category
-     *
-     * @param string $category
-     * @return Requirement
-     */
-    public function setCategory($category)
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
-    /**
-     * Get category
-     *
-     * @return string
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
-
-    /**
-     * Set initiator
-     *
-     * @param string $initiator
-     * @return Requirement
-     */
-    public function setInitiator($initiator)
-    {
-        $this->initiator = $initiator;
-
-        return $this;
-    }
-
-    /**
-     * Get initiator
-     *
-     * @return string
-     */
-    public function getInitiator()
-    {
-        return $this->initiator;
-    }
-
 
     /**
      * Set province
@@ -357,7 +206,7 @@ class Requirement
     /**
      * Get province
      *
-     * @return string
+     * @return string 
      */
     public function getProvince()
     {
@@ -380,34 +229,92 @@ class Requirement
     /**
      * Get city
      *
-     * @return string
+     * @return string 
      */
     public function getCity()
     {
         return $this->city;
     }
 
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Requirement
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
 
     /**
-     * Get status for chinese
+     * Get description
      *
-     * @return string
+     * @return string 
      */
-    public function getStatusZh()
+    public function getDescription()
     {
-        $status = self::$statusZhArr;
-        return $status[$this->status];
+        return $this->description;
+    }
+
+    /**
+     * Set update_time
+     *
+     * @param \DateTime $updateTime
+     * @return Requirement
+     */
+    public function setUpdateTime($updateTime)
+    {
+        $this->update_time = $updateTime;
+
+        return $this;
+    }
+
+    /**
+     * Get update_time
+     *
+     * @return \DateTime 
+     */
+    public function getUpdateTime()
+    {
+        return $this->update_time;
+    }
+
+    /**
+     * Set report_time
+     *
+     * @param \DateTime $reportTime
+     * @return Requirement
+     */
+    public function setReportTime($reportTime)
+    {
+        $this->report_time = $reportTime;
+
+        return $this;
+    }
+
+    /**
+     * Get report_time
+     *
+     * @return \DateTime 
+     */
+    public function getReportTime()
+    {
+        return $this->report_time;
     }
 
 
+
     /**
-     * Get category for chinese
+     * Get sports for chinese
      *
      * @return string
      */
-    public function getCategoryZh()
+    public function getSportsZh()
     {
-        $category = self::$categoryZhArr;
-        return $category[$this->$category];
+        $sports = self::$sportsZhArr;
+        return $sports[$this->sports];
     }
 }

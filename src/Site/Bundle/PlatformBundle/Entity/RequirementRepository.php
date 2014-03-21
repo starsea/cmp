@@ -14,7 +14,7 @@ class RequirementRepository extends EntityRepository
 {
 
     //需求搜索列表
-    public function getListBy($data)
+    public function search($data)
     {
         $qb = $this->createQueryBuilder('i');
 
@@ -24,10 +24,11 @@ class RequirementRepository extends EntityRepository
             if (!$this->getClassMetadata()->hasField($field)) {
                 continue;
             }
-            // like
-            if (in_array($field, array('subject', 'company'))) {
-                $qb->andWhere('i.' . $field . ' like ' . ':' . $field)
-                    ->setParameter($field, '%' . $value . '%');
+            // like  操他妈的 这需求 产品脑子被驴踢了？
+            if (in_array($field, array('keywords','subject', 'description'))) {
+//                $qb->andWhere('i.' . $field . ' like ' . ':' . $field)
+//                    ->setParameter($field, '%' . $value . '%');
+                $qb->andWhere("i.subject like %{$value}% or i.description like %{$value}%");
                 continue;
             }
 
@@ -43,7 +44,7 @@ class RequirementRepository extends EntityRepository
                 ->setParameter($field, $value);
         }
 
-       var_dump( $qb->getQuery()->getParameters());
+       //var_dump( $qb->getQuery()->getParameters());
         return $qb->getQuery()->getResult();
     }
 }

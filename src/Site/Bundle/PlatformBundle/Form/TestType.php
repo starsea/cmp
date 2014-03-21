@@ -6,33 +6,32 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class RequirementType extends AbstractType
+class TestType extends AbstractType
 {
-        /**
+    /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('subject')
-            ->add('sports')
-            ->add('company')
-            ->add('province')
-            ->add('city')
-            ->add('description')
-            ->add('update_time')
-            ->add('report_time')
-        ;
+            ->add('updateTime', 'date', array(
+                'widget' => 'single_text',
+                'required' => false,
+            ))
+            ->add('reportTime', 'date', array(
+                'widget' => 'single_text',
+                'required' => false,
+            ));
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Site\Bundle\PlatformBundle\Entity\Requirement'
+            'virtual' => true
         ));
     }
 
@@ -41,6 +40,6 @@ class RequirementType extends AbstractType
      */
     public function getName()
     {
-        return 'site_bundle_platformbundle_requirement';
+        return 'test';
     }
 }

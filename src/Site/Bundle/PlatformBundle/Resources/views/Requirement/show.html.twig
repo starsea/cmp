@@ -14,36 +14,32 @@
                 <td>{{ entity.subject }}</td>
             </tr>
             <tr>
+                <th>Sports</th>
+                <td>{{ entity.sports }}</td>
+            </tr>
+            <tr>
                 <th>Company</th>
                 <td>{{ entity.company }}</td>
             </tr>
             <tr>
-                <th>Background</th>
-                <td>{{ entity.background }}</td>
+                <th>Province</th>
+                <td>{{ entity.province }}</td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td>{{ entity.city }}</td>
             </tr>
             <tr>
                 <th>Description</th>
                 <td>{{ entity.description }}</td>
             </tr>
             <tr>
-                <th>Starttime</th>
-                <td>{{ entity.startTime|date('Y-m-d') }}</td>
+                <th>Update_time</th>
+                <td>{{ entity.updatetime|date('Y-m-d H:i:s') }}</td>
             </tr>
             <tr>
-                <th>Endtime</th>
-                <td>{{ entity.endTime|date('Y-m-d') }}</td>
-            </tr>
-            <tr>
-                <th>Status</th>
-                <td>{{ entity.status }}</td>
-            </tr>
-            <tr>
-                <th>Category</th>
-                <td>{{ entity.category }}</td>
-            </tr>
-            <tr>
-                <th>Initiator</th>
-                <td>{{ entity.initiator }}</td>
+                <th>Report_time</th>
+                <td>{{ entity.reporttime|date('Y-m-d H:i:s') }}</td>
             </tr>
         </tbody>
     </table>

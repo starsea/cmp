@@ -1,91 +1,78 @@
-{% extends '::base.html.twig' %}
+{% extends 'SitePlatformBundle::layout.html.twig' %}
 
-{% block body -%}
-    <a href="{{ path('requirement_new') }}">
-        添加
-    </a>
+{% block title %}虎扑协作平台{% endblock %}
+
+{% block content -%}
+    {{ parent() }}
+    <div class="container">
+
+        <div class="starter-template">
+            <form action="{{ path('requirement') }}" method ="get" {{ form_enctype(form) }}>
+                {{ form_widget(form) }}
+
+                <input type="submit" />
+            </form>
+
+            <table class="records_list">
+                <thead>
+                <tr>
+                    <th>更新时间</th>
+                    <th>运动项目</th>
+                    <th>单位性质</th>
+                    <th>所属地区</th>
+                    <th>需求主题</th>
+                    <th>内部联络人</th>
+                    <th>反馈时间</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for entity in entities %}
+                    <tr>
+                        <td>{% if entity.updatetime %}{{ entity.updatetime|date('Y-m-d') }}{% endif %}</td>
+                        <td>{{ entity.sports }}</td>
+                        <td>{{ entity.company }}</td>
+                        <td>{{ entity.province }}</td>
+                        <td><a href="{{ path('requirement_show', { 'id': entity.id }) }}">{{ entity.subject }}</a></td>
+                        <td>{{ entity.city }}</td>
+                        <td>{% if entity.reporttime %}{{ entity.reporttime|date('Y-m-d') }}{% endif %}</td>
+                        <td>
+                            <ul>
+                                <li>
+                                    <a href="{{ path('requirement_show', { 'id': entity.id }) }}">show</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('requirement_edit', { 'id': entity.id }) }}">edit</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            <ul>
+                <li>
+                    <a href="{{ path('requirement_new') }}">
+                        Create a new entry
+                    </a>
+                </li>
+            </ul>
 
 
-    <form action="{{ path('requirement') }}" method="get" {{ form_enctype(form) }}>
-        {{ form_widget(form) }}
 
-        <input type="submit" value="搜索"/>
-    </form>
-    <!--
-    <form action="{{ path('requirement') }}" method="get">
-        <ul style="list-style: none;" class="search">
-            <li>
-                <a href="{{ path('requirement_new') }}">
-                    添加
-                </a>
-            </li>
+        </div>
 
-            <li>需求主题: <input type="text" name="subject" style="width: 100px"/></li>
-
-            <li>客户单位: <input type="text" name="company" style="width: 100px"/></li>
-
-            <li><input type="submit" value="提交"/></li>
-        </ul>
-    </form>
-    -->
-    <h1>需求列表</h1>
-
-    <table class="records_list">
-        <thead>
-        <tr>
-            <th>list</th>
-            <th>需求主题</th>
-            <th>客户单位</th>
-            <th>客户背景</th>
-            <th>需求描述</th>
-            <th>开始时间</th>
-            <th>结束时间</th>
-            <th>状态</th>
-            <th>分类</th>
-            <th>发起人</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('requirement_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.subject }}</td>
-                <td>{{ entity.company }}</td>
-                <td>{{ entity.background }}</td>
-                <td>{{ entity.description }}</td>
-                <td>{% if entity.startTime %}{{ entity.startTime|date('Y-m-d') }}{% endif %}</td>
-                <td>{% if entity.endTime %}{{ entity.endTime|date('Y-m-d') }}{% endif %}</td>
-                <td>{{ entity.status }}</td>
-                <td>{{ entity.category }}</td>
-                <td>{{ entity.initiator }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('requirement_show', { 'id': entity.id }) }}">详细信息</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('requirement_edit', { 'id': entity.id }) }}">编辑</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li><span class="in_text">联系地址：</span><span><select name="province" id="province"></select></span>省</li>
-        <li><span class="in_text1"><select name="city" id="city"></select></span>市</li>
-    </ul>
+    </div><!-- /.container -->
 
 {% endblock %}
 {% block javascripts %}
+    {{ parent() }}
     {% javascripts '@SitePlatformBundle/Resources/public/js/PCASClass.utf8.js' %}
     <script src="{{ asset_url }}" type="text/javascript"></script>
 
     <script type="text/javascript">
-        new PCAS("province","city");
+        new PCAS("form_province","form_city");
     </script>
 
     {% endjavascripts %}

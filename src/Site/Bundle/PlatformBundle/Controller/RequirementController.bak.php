@@ -2,7 +2,6 @@
 
 namespace Site\Bundle\PlatformBundle\Controller;
 
-use Site\Bundle\PlatformBundle\Form\TestType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -19,6 +18,7 @@ use Site\Bundle\PlatformBundle\Form\RequirementType;
 class RequirementController extends Controller
 {
 
+
     /**
      * Lists all Requirement entities.
      *
@@ -31,44 +31,40 @@ class RequirementController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        $defaultData = array();
+        $requirement = new Requirement();
 
         //list search form
-        $form = $this->createFormBuilder($defaultData)
-
-            ->add('sports', 'choice', array(
-                'choices' => Requirement::$sportsZhArr,
+        $form = $this->createFormBuilder($requirement)
+            ->add('subject', 'text', array(
+                'required' => false,
+                'label' => '需求主题',
+            ))
+            ->add('company', 'text', array(
+                'required' => false,
+                'label' => '客户单位',
+            ))
+            ->add('status', 'choice', array(
+                'choices' => $requirement::$statusZhArr,
                 'required' => false,
                 'label' => '状态',
-                'empty_value' => '-运动项目-',
+                'empty_value' => '-当前状态-',
                 'empty_data' => null
             ))
-//            ->add('company', 'choice', array(
-//                'required' => false,
-//                'label' => '分类',
-//                'empty_value' => '-需求分类-',
-//                'empty_data' => null
-//            ))
-            ->add('updateTimeMin', 'date', array(
+            ->add('category', 'choice', array(
+                'choices' => $requirement::$categoryZhArr,
+                'required' => false,
+                'label' => '分类',
+                'empty_value' => '-需求分类-',
+                'empty_data' => null
+            ))
+            ->add('startTime','date',array(
                 'widget' => 'single_text',
                 'required' => false,
             ))
-            ->add('updateTimeMax', 'date', array(
+            ->add('endTime','date',array(
                 'widget' => 'single_text',
                 'required' => false,
             ))
-            ->add('province','choice',array(
-                'required' => false,
-            ))
-            ->add('city','choice',array(
-                'required' => false,
-            ))
-            ->add('keywords', 'text',array())
-
-//            ->add('time', new TestType(), array(
-//                'data_class' => 'Site\\Bundle\\PlatformBundle\\Entity\\Requirement'
-//            ))
-
             ->getForm();
 
 
@@ -77,11 +73,10 @@ class RequirementController extends Controller
             $entities = $em->getRepository('SitePlatformBundle:Requirement')->findAll();
 
         } else {
-
             var_dump($request->query->get('form'));
             $params = array_filter($request->query->get('form'));
 
-            $entities = $em->getRepository('SitePlatformBundle:Requirement')->search($params);
+            $entities = $em->getRepository('SitePlatformBundle:Requirement')->getListBy($params);
         };
 
 
@@ -91,6 +86,46 @@ class RequirementController extends Controller
         );
 
     }
+
+
+    /**
+     * search all Requirement entities.
+     *
+     * @Route("/search", name="requirement_search")
+     * @Method("GET")
+     * @Template()
+     */
+    public function searchAction(Request $request)
+    {
+
+        $params = array_filter($request->query->get('form'));
+
+//        var_dump($request->query->get('form'));
+        $em = $this->getDoctrine()->getManager();
+
+        $entities = $em->getRepository('SitePlatformBundle:Requirement')->getListBy($params);
+
+        $requirement = new Requirement();
+
+        //list search form
+        $form = $this->createFormBuilder($requirement)
+            ->add('subject', 'text', array('required' => false))
+            ->add('company', 'text', array('required' => false))
+            ->add('status', 'choice', array(
+                'choices' => $requirement::$statusZhArr,
+                'required' => false,
+                'empty_value' => '当前状态',
+                'empty_data' => null
+            ))
+            ->getForm();
+
+        return array(
+            'entities' => $entities,
+            'form' => $form->createView(),
+        );
+
+    }
+
 
     /**
      * Creates a new Requirement entity.
@@ -104,7 +139,8 @@ class RequirementController extends Controller
         $entity = new Requirement();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
-
+var_dump($form, $form->getExtraData());
+        exit;
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
@@ -157,6 +193,42 @@ class RequirementController extends Controller
     }
 
     /**
+     *
+     * @Route("/test", name="requirement_test")
+     * @Method("GET")
+     * @Template()
+     */
+    public function testAction()
+    {
+        $task = new Requirement();
+
+        $task->setSubject('aaaa');
+        $form = $this->createFormBuilder($task)
+            ->add('subject')
+            ->add('company')
+            ->add('background')
+            ->add('description')
+            ->add('startTime')
+            ->add('endTime')
+            ->add('status', 'choice', array(
+                'choices' => array(
+                    '1' => '客户沟通',
+                    '2' => '需求收集',
+                    '3' => '项目进行',
+                    '4' => '需求结束'),
+                'empty_value' => '-请选择-',
+                'empty_data' => null,
+            ))
+            ->add('category')
+            ->add('initiator')
+            ->getForm();
+
+        return array(
+            'form' => $form->createView(),
+        );
+    }
+
+    /**
      * Finds and displays a Requirement entity.
      *
      * @Route("/{id}", name="requirement_show")
@@ -166,7 +238,6 @@ class RequirementController extends Controller
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-
         $entity = $em->getRepository('SitePlatformBundle:Requirement')->find($id);
 
         if (!$entity) {
@@ -180,6 +251,7 @@ class RequirementController extends Controller
             'delete_form' => $deleteForm->createView(),
         );
     }
+
 
     /**
      * Displays a form to edit an existing Requirement entity.
@@ -207,6 +279,7 @@ class RequirementController extends Controller
             'delete_form' => $deleteForm->createView(),
         );
     }
+
 
     /**
      * Creates a form to edit a Requirement entity.
@@ -302,4 +375,6 @@ class RequirementController extends Controller
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm();
     }
+
+
 }
