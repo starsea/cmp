@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Company\BlogBundle\Entity;
+namespace Site\Bundle\PlatformBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -30,14 +30,14 @@ class User
 
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255,name="email")
      *
      * @var string $email
      */
     protected $email;
 
     /**
-     * @ORM\Column(type="password", name="password")
+     * @ORM\Column(type="string", length=255 ,name="password")
      *
      * @var string $password
      */
@@ -52,14 +52,22 @@ class User
 
     protected $createdAt;
 
+
+    /**
+     * @ORM\OneToMany(targetEntity="Requirement", mappedBy="contact")
+     */
+    protected $requirement;
+
+
     /**
      * Constructs a new instance of User
      */
     public function __construct()
     {
-        //$this->posts = new ArrayCollection();
+        $this->requirement = new ArrayCollection();
         $this->createdAt = new \DateTime();
     }
+
 
 
     /**
@@ -119,6 +127,29 @@ class User
     }
 
     /**
+     * Set password
+     *
+     * @param string $password
+     * @return User
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get password
+     *
+     * @return string 
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
      * Set createdAt
      *
      * @param \DateTime $createdAt
@@ -139,5 +170,38 @@ class User
     public function getCreatedAt()
     {
         return $this->createdAt;
+    }
+
+    /**
+     * Add requirement
+     *
+     * @param \Site\Bundle\PlatformBundle\Entity\Requirement $requirement
+     * @return User
+     */
+    public function addRequirement(\Site\Bundle\PlatformBundle\Entity\Requirement $requirement)
+    {
+        $this->requirement[] = $requirement;
+
+        return $this;
+    }
+
+    /**
+     * Remove requirement
+     *
+     * @param \Site\Bundle\PlatformBundle\Entity\Requirement $requirement
+     */
+    public function removeRequirement(\Site\Bundle\PlatformBundle\Entity\Requirement $requirement)
+    {
+        $this->requirement->removeElement($requirement);
+    }
+
+    /**
+     * Get requirement
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRequirement()
+    {
+        return $this->requirement;
     }
 }

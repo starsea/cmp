@@ -96,7 +96,7 @@ class Requirement
      *
      * @ORM\Column(name="update_time", type="date")
      */
-    private $update_time;
+    private $updateTime;
 
 
     /**
@@ -106,9 +106,16 @@ class Requirement
      *
      * @ORM\Column(name="report_time", type="date")
      */
-    private $report_time;
+    private $reportTime;
 
 
+    /**
+     * @var object //联系人
+     *
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="user")
+     * @ORM\JoinColumn(name="contact_id", referencedColumnName="id")
+     */
+    private $contact;
 
 
     /**
@@ -260,51 +267,73 @@ class Requirement
     }
 
     /**
-     * Set update_time
+     * Set updateTime
      *
      * @param \DateTime $updateTime
      * @return Requirement
      */
     public function setUpdateTime($updateTime)
     {
-        $this->update_time = $updateTime;
+        $this->updateTime = $updateTime;
 
         return $this;
     }
 
     /**
-     * Get update_time
+     * Get updateTime
      *
      * @return \DateTime 
      */
     public function getUpdateTime()
     {
-        return $this->update_time;
+        return $this->updateTime;
     }
 
     /**
-     * Set report_time
+     * Set reportTime
      *
      * @param \DateTime $reportTime
      * @return Requirement
      */
     public function setReportTime($reportTime)
     {
-        $this->report_time = $reportTime;
+        $this->reportTime = $reportTime;
 
         return $this;
     }
 
     /**
-     * Get report_time
+     * Get reportTime
      *
      * @return \DateTime 
      */
     public function getReportTime()
     {
-        return $this->report_time;
+        return $this->reportTime;
     }
 
+    /**
+     * Set contact
+     *
+     * @param \Site\Bundle\PlatformBundle\Entity\User $contact
+     * @return Requirement
+     */
+    public function setContact(\Site\Bundle\PlatformBundle\Entity\User $contact = null)
+    {
+        $this->contact = $contact;
+
+        return $this;
+    }
+
+    /**
+     * Get contact
+     *
+     * @return \Site\Bundle\PlatformBundle\Entity\User 
+     */
+    public function getContact()
+    {
+        return $this->contact;
+    }
 
 
     /**
