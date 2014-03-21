@@ -2,78 +2,222 @@
 
 {% block title %}虎扑协作平台{% endblock %}
 
-{% block content -%}
-    {{ parent() }}
-    <div class="container">
+{% block content %}
 
-        <div class="starter-template">
-            <form action="{{ path('requirement') }}" method ="get" {{ form_enctype(form) }}>
-                {{ form_widget(form) }}
+    <div class="demand-con">
+        <div class="searchBar">
+            <a href="addDemand.html" class="addDemand">+ 新增需求</a>
+            <select name="item" id="" class="item">
+                <option value="">-运动项目-</option>
+                <option value="">篮球</option>
+                <option value="">足球</option>
+                <option value="">乒乓球</option>
+                <option value="">网球</option>
+                <option value="">羽毛球</option>
+                <option value="">综合|其他</option>
+            </select>
+            <input class="Wdate" type="text" onClick="WdatePicker()">
+            <input class="Wdate" type="text" onClick="WdatePicker()">
+            <select name="country" id="country" class="liandong">
 
-                <input type="submit" />
-            </form>
+            </select>
+            <select name="province" id="province" class="liandong">
 
-            <table class="records_list">
-                <thead>
-                <tr>
-                    <th>更新时间</th>
-                    <th>运动项目</th>
-                    <th>单位性质</th>
-                    <th>所属地区</th>
-                    <th>需求主题</th>
-                    <th>内部联络人</th>
-                    <th>反馈时间</th>
-                    <th>Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for entity in entities %}
-                    <tr>
-                        <td>{% if entity.updatetime %}{{ entity.updatetime|date('Y-m-d') }}{% endif %}</td>
-                        <td>{{ entity.sports }}</td>
-                        <td>{{ entity.company }}</td>
-                        <td>{{ entity.province }}</td>
-                        <td><a href="{{ path('requirement_show', { 'id': entity.id }) }}">{{ entity.subject }}</a></td>
-                        <td>{{ entity.city }}</td>
-                        <td>{% if entity.reporttime %}{{ entity.reporttime|date('Y-m-d') }}{% endif %}</td>
-                        <td>
-                            <ul>
-                                <li>
-                                    <a href="{{ path('requirement_show', { 'id': entity.id }) }}">show</a>
-                                </li>
-                                <li>
-                                    <a href="{{ path('requirement_edit', { 'id': entity.id }) }}">edit</a>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+            </select>
+            <select name="city" id="city" class="liandong">
 
-            <ul>
-                <li>
-                    <a href="{{ path('requirement_new') }}">
-                        Create a new entry
-                    </a>
-                </li>
-            </ul>
-
-
+            </select>
+            <input type="text" class="keywords" value="请输入关键字查询">
+            <a href="#" class="searchBtn">搜索</a>
 
         </div>
+        <table border='0' cellspacing='0' cellpadding='0' width="100%" class="demand-table">
+            <tr>
+                <th width="10%">更新时间</th>
+                <th width="10%">运动项目</th>
+                <th width="15%">单位性质</th>
+                <th width="10%">所属地区</th>
+                <th width="25%">需求主题（点击查看详细）</th>
+                <th width="11%">内部联络人</th>
+                <th width="8%">反馈时间</th>
+                <th width="11%">...</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><a href="updateDemand.html">修改</a> | <a href="#" class="del">删除</a></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><a href="updateDemand.html">修改</a> | <a href="#" class="del">删除</a></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><a href="updateDemand.html">修改</a> | <a href="#" class="del">删除</a></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><a href="#">修改</a> | <a href="#">删除</a></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><a href="#">修改</a> | <a href="#">删除</a></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><a href="#">修改</a> | <a href="#">删除</a></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><a href="#">修改</a> | <a href="#">删除</a></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><a href="#">修改</a> | <a href="#">删除</a></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><a href="#">修改</a> | <a href="#">删除</a></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><a href="#">修改</a> | <a href="#">删除</a></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><a href="#">修改</a> | <a href="#">删除</a></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><a href="#">修改</a> | <a href="#">删除</a></td>
+            </tr>
+        </table>
 
-    </div><!-- /.container -->
+        <div class="pageWrap">
+            <a href="#" class="prev">上一页</a>
+            <a href="#" class="pages">1</a>
+            <a href="#" class="pages">2</a>
+            <a href="#" class="pages">3</a>
+            <a href="#" class="pages">4</a>
+            <a href="#" class="pages">5</a>
+            <a href="#" class="pages">6</a>
+            <a href="#" class="pages">7</a>
+            <a href="#" class="pages">8</a>
+            <a href="#" class="next">下一页</a>
+        </div>
+
+    </div>
 
 {% endblock %}
+
+
+
+
+
 {% block javascripts %}
     {{ parent() }}
-    {% javascripts '@SitePlatformBundle/Resources/public/js/PCASClass.utf8.js' %}
+    {% javascripts '@SitePlatformBundle/Resources/public/js/area.js' %}
     <script src="{{ asset_url }}" type="text/javascript"></script>
 
-    <script type="text/javascript">
-        new PCAS("form_province","form_city");
+    <script>
+        _init_area('','','');
+        $('.keywords').focus(function(){
+            if($(this).val() == '请输入关键字查询'){
+                $(this).val('');
+            }
+        }).blur(function(){
+            if($(this).val() == ''){
+                $(this).val('请输入关键字查询');
+            }
+        })
+        $('.del').on('click',function(){
+            var show = showVideo.create({
+                wid:400,
+                hei:180
+            });
+            show.init();
+            $('.cover').bind('click',function(){
+                $(".popCon,.cover").remove();
+            })
+            $('.confirm').bind('click',function(){
+
+            })
+        })
+
     </script>
 
     {% endjavascripts %}
 {% endblock %}
+
+

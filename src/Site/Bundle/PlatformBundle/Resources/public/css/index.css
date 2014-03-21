@@ -1,0 +1,588 @@
+/* line 1, ../sass/_dialog.scss */
+html {
+  _background-image: url(about:blank);
+  _background-attachment: fixed;
+}
+
+/* line 1, ../sass/_reset.scss */
+body {
+  color: #112657;
+}
+
+/* line 6, ../sass/_reset.scss */
+h1, h2, h3, h4, input, textarea, select, button {
+  font-size: 100%;
+}
+
+/* line 9, ../sass/_reset.scss */
+h1, h2, h3, h4 {
+  font-family: arial, tahoma, \5b8b\4f53;
+}
+
+/* line 12, ../sass/_reset.scss */
+textarea {
+  resize: vertical;
+}
+
+/* line 16, ../sass/_reset.scss */
+li {
+  list-style: none;
+}
+
+/* line 20, ../sass/_reset.scss */
+img {
+  border: 0;
+  vertical-align: middle;
+}
+
+/* line 25, ../sass/_reset.scss */
+i, em {
+  font-style: normal;
+}
+
+/* line 29, ../sass/_reset.scss */
+a {
+  color: #3490e9;
+  text-decoration: none;
+}
+
+/* line 34, ../sass/_reset.scss */
+a:hover {
+  color: #a41f24;
+  text-decoration: none;
+}
+
+/* line 39, ../sass/_reset.scss */
+a:focus, input {
+  outline: none;
+  background-color: transparent;
+}
+
+/* line 5, ../sass/index.scss */
+body {
+  height: 100%;
+}
+
+/* line 9, ../sass/index.scss */
+.wrap {
+  width: 1300px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #333;
+}
+
+/* line 12, ../sass/index.scss */
+.loginForm {
+  width: 600px;
+  height: 360px;
+  margin: 135px auto 200px;
+}
+/* line 14, ../sass/index.scss */
+.loginForm .logo {
+  display: block;
+  width: 140px;
+  height: 52px;
+  margin: 0 auto 5px;
+  background: url(../images/logo.png) no-repeat;
+}
+/* line 21, ../sass/index.scss */
+.loginForm .form h2 {
+  background: #a41f24;
+  height: 41px;
+  color: #FFF;
+}
+/* line 25, ../sass/index.scss */
+.loginForm .form h2 em {
+  float: right;
+  display: inline;
+  margin-right: 10px;
+  font: 18px/38px 'microsoft yahei';
+}
+/* line 31, ../sass/index.scss */
+.loginForm .form h2 span {
+  margin-left: 40px;
+  font: 18px/38px 'microsoft yahei';
+}
+/* line 36, ../sass/index.scss */
+.loginForm .form .loginWrap {
+  border: 1px solid #a41f24;
+  padding: 38px;
+}
+/* line 39, ../sass/index.scss */
+.loginForm .form .loginWrap form {
+  width: 410px;
+  height: auto;
+  margin: 0 auto 22px;
+  *zoom: 1;
+}
+/* line 25, ../sass/_function.scss */
+.loginForm .form .loginWrap form:before, .loginForm .form .loginWrap form:after {
+  content: '';
+  display: table;
+}
+/* line 29, ../sass/_function.scss */
+.loginForm .form .loginWrap form:after {
+  clear: both;
+}
+/* line 42, ../sass/index.scss */
+.loginForm .form .loginWrap form div {
+  width: 162px;
+  margin-right: 15px;
+  float: left;
+  display: inline;
+}
+/* line 46, ../sass/index.scss */
+.loginForm .form .loginWrap form div span {
+  color: #333;
+  font-weight: bold;
+  line-height: 15px;
+}
+/* line 51, ../sass/index.scss */
+.loginForm .form .loginWrap form div input {
+  color: #000;
+  font-size: 13px;
+  height: 30px;
+  width: 160px;
+  margin-top: 5px;
+}
+/* line 59, ../sass/index.scss */
+.loginForm .form .loginWrap form .submit {
+  float: left;
+  display: inline;
+  border: none;
+  width: 50px;
+  height: 40px;
+  margin: 13px 0 0;
+  cursor: pointer;
+  background: #a41f24;
+  color: #fff;
+}
+/* line 68, ../sass/index.scss */
+.loginForm .form .loginWrap .attention {
+  width: 495px;
+  height: auto;
+  margin: 0 auto;
+  border: 1px solid #A41F24;
+  padding: 10px;
+  color: #A41F24;
+  font-size: 18px;
+  line-height: 26px;
+}
+
+/* line 80, ../sass/index.scss */
+.head-con {
+  height: 70px;
+  position: relative;
+  overflow: hidden;
+}
+/* line 84, ../sass/index.scss */
+.head-con .head-conLogo {
+  position: absolute;
+  width: 325px;
+  height: 65px;
+  width: 325px;
+  height: 65px;
+  margin: 5px 0 0 10px;
+}
+/* line 89, ../sass/index.scss */
+.head-con .head-conLogo a {
+  display: inline-block;
+  width: 140px;
+  height: 52px;
+  margin-top: 5px;
+  background: url(../images/logo.png) no-repeat;
+}
+/* line 97, ../sass/index.scss */
+.head-con .head-conLogo span {
+  display: inline-block;
+  font: 24px/47px 'microsoft yahei';
+  width: auto;
+  height: 47px;
+  margin: 5px 0 0 10px;
+  border-left: 2px solid #a41f24;
+  padding-left: 10px;
+  vertical-align: top;
+}
+/* line 106, ../sass/index.scss */
+.head-con ul {
+  height: 51px;
+  background: url(../images/dot.png) left bottom repeat-x;
+  padding-left: 450px;
+  margin-top: 18px;
+}
+/* line 111, ../sass/index.scss */
+.head-con ul li {
+  float: left;
+  display: inline;
+  width: 136px;
+  height: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 49px;
+  border: 1px solid #999;
+  border-bottom: none;
+  text-align: center;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  margin-left: -1px;
+  cursor: pointer;
+  background: #A41F24;
+}
+/* line 127, ../sass/index.scss */
+.head-con ul li a {
+  color: #fff;
+  display: block;
+  height: 50px;
+}
+/* line 131, ../sass/index.scss */
+.head-con ul li a:hover {
+  color: #fff;
+}
+/* line 135, ../sass/index.scss */
+.head-con ul li.cur {
+  background: #fff;
+  border-color: #A41F24;
+  color: #333;
+  margin-bottom: -1px;
+}
+/* line 140, ../sass/index.scss */
+.head-con ul li.cur a {
+  color: #333;
+}
+/* line 146, ../sass/index.scss */
+.head-con .user-info {
+  position: absolute;
+  right: 30px;
+  top: 30px;
+}
+/* line 150, ../sass/index.scss */
+.head-con .user-info span {
+  color: #333;
+  font-size: 16px;
+}
+/* line 153, ../sass/index.scss */
+.head-con .user-info span a {
+  text-decoration: underline;
+  color: #0000d6;
+  font-size: 16px;
+}
+
+/* line 165, ../sass/index.scss */
+.new-demand {
+  float: left;
+  display: inline;
+  width: 635px;
+  height: auto;
+  margin: 5px 0 30px 10px;
+}
+/* line 168, ../sass/index.scss */
+.new-demand h2 {
+  width: 300px;
+  border-bottom: 2px solid #A41F24;
+  font: 16px/22px 'microsoft yahei';
+  margin-bottom: 5px;
+}
+/* line 175, ../sass/index.scss */
+.new-demand th, .new-demand td {
+  height: 30px;
+  border: 1px solid #bbb;
+  text-align: center;
+  font: 14px/30px 'microsoft yahei';
+}
+/* line 180, ../sass/index.scss */
+.new-demand th a, .new-demand td a {
+  font: 14px/30px 'microsoft yahei';
+}
+/* line 185, ../sass/index.scss */
+.new-demand th {
+  background: #ccc;
+  color: #000;
+}
+
+/* line 191, ../sass/index.scss */
+.demand-con {
+  padding: 10px;
+}
+/* line 193, ../sass/index.scss */
+.demand-con .searchBar {
+  *zoom: 1;
+  margin-bottom: 10px;
+}
+/* line 25, ../sass/_function.scss */
+.demand-con .searchBar:before, .demand-con .searchBar:after {
+  content: '';
+  display: table;
+}
+/* line 29, ../sass/_function.scss */
+.demand-con .searchBar:after {
+  clear: both;
+}
+/* line 196, ../sass/index.scss */
+.demand-con .searchBar .addDemand, .demand-con .searchBar .searchBtn {
+  float: left;
+  display: inline;
+  width: 100px;
+  height: 40px;
+  background: #A41F24;
+  font: 16px/40px 'simsun';
+  font-weight: 600;
+  text-align: center;
+  color: #fff;
+}
+/* line 206, ../sass/index.scss */
+.demand-con .searchBar select {
+  float: left;
+  display: inline;
+  width: 160px;
+  height: 21px;
+  margin: 8px 0 0 10px;
+  padding: 1px;
+}
+/* line 210, ../sass/index.scss */
+.demand-con .searchBar select.liandong {
+  width: 100px;
+}
+/* line 214, ../sass/index.scss */
+.demand-con .searchBar input {
+  float: left;
+  display: inline;
+  width: 90px;
+  height: 20px;
+  margin: 8px 0 0 10px;
+}
+/* line 217, ../sass/index.scss */
+.demand-con .searchBar input.keywords {
+  width: 352px;
+  height: 19px;
+  border: 1px solid #999;
+  text-indent: 5px;
+}
+/* line 224, ../sass/index.scss */
+.demand-con .searchBar .searchBtn {
+  margin-left: 10px;
+}
+/* line 228, ../sass/index.scss */
+.demand-con .demand-table {
+  margin-bottom: 15px;
+}
+/* line 230, ../sass/index.scss */
+.demand-con .demand-table th, .demand-con .demand-table td {
+  height: 30px;
+  border: 1px solid #bbb;
+  text-align: center;
+  font: 14px/30px 'microsoft yahei';
+}
+/* line 235, ../sass/index.scss */
+.demand-con .demand-table th a, .demand-con .demand-table td a {
+  font: 14px/30px 'microsoft yahei';
+}
+/* line 240, ../sass/index.scss */
+.demand-con .demand-table th {
+  background: #ccc;
+  color: #000;
+}
+/* line 245, ../sass/index.scss */
+.demand-con .pageWrap {
+  text-align: right;
+}
+/* line 247, ../sass/index.scss */
+.demand-con .pageWrap a {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  margin: 0 0 0 15px;
+  text-align: center;
+  font: 13px/30px 'microsoft yahei';
+  color: #A41F24;
+  border-radius: 6px;
+}
+/* line 254, ../sass/index.scss */
+.demand-con .pageWrap a.prev, .demand-con .pageWrap a.next {
+  width: 90px;
+}
+/* line 257, ../sass/index.scss */
+.demand-con .pageWrap a:hover {
+  background: #A41F24;
+  color: #FFF;
+}
+
+/* line 265, ../sass/index.scss */
+.addDemond {
+  width: 400px;
+  margin: 0 auto;
+}
+/* line 268, ../sass/index.scss */
+.addDemond p {
+  font: 13px/20px 'microsoft yahei';
+  margin: 5px 0 10px;
+  color: #000;
+}
+/* line 273, ../sass/index.scss */
+.addDemond h2 {
+  width: 300px;
+  border-bottom: 2px solid #A41F24;
+  font: 16px/22px 'microsoft yahei';
+  margin-bottom: 5px;
+}
+/* line 280, ../sass/index.scss */
+.addDemond strong {
+  color: #333;
+  font-size: 13px;
+  line-height: 18px;
+}
+/* line 285, ../sass/index.scss */
+.addDemond .demond-theme input, .addDemond .res-relation input {
+  width: 250px;
+  height: 26px;
+  margin: 5px 0 10px;
+}
+/* line 288, ../sass/index.scss */
+.addDemond .demond-item select, .addDemond .demond-company select {
+  width: 250px;
+  height: 21px;
+  margin: 5px 0 10px;
+  padding: 1px;
+  font-size: 13px;
+}
+/* line 293, ../sass/index.scss */
+.addDemond .selWrap {
+  *zoom: 1;
+}
+/* line 25, ../sass/_function.scss */
+.addDemond .selWrap:before, .addDemond .selWrap:after {
+  content: '';
+  display: table;
+}
+/* line 29, ../sass/_function.scss */
+.addDemond .selWrap:after {
+  clear: both;
+}
+/* line 295, ../sass/index.scss */
+.addDemond .selWrap .sel1, .addDemond .selWrap .sel2, .addDemond .selWrap .sel3 {
+  float: left;
+  display: inline;
+  margin-right: 10px;
+}
+/* line 298, ../sass/index.scss */
+.addDemond .selWrap .sel1 .liandong, .addDemond .selWrap .sel2 .liandong, .addDemond .selWrap .sel3 .liandong {
+  width: 100px;
+  height: 21px;
+  margin: 5px 0 10px;
+  padding: 1px;
+}
+/* line 304, ../sass/index.scss */
+.addDemond .demond-desc textarea {
+  margin: 5px 0 10px;
+}
+/* line 307, ../sass/index.scss */
+.addDemond .selWrap2 {
+  *zoom: 1;
+}
+/* line 25, ../sass/_function.scss */
+.addDemond .selWrap2:before, .addDemond .selWrap2:after {
+  content: '';
+  display: table;
+}
+/* line 29, ../sass/_function.scss */
+.addDemond .selWrap2:after {
+  clear: both;
+}
+/* line 309, ../sass/index.scss */
+.addDemond .selWrap2 .sel4, .addDemond .selWrap2 .sel5 {
+  float: left;
+  display: inline;
+  margin-right: 10px;
+}
+/* line 312, ../sass/index.scss */
+.addDemond .selWrap2 .sel4 .liandong, .addDemond .selWrap2 .sel5 .liandong {
+  width: 100px;
+  height: 21px;
+  margin: 5px 0;
+  padding: 1px;
+}
+/* line 318, ../sass/index.scss */
+.addDemond .demond-time .Wdate {
+  margin: 5px 0 10px;
+}
+/* line 321, ../sass/index.scss */
+.addDemond .demond-btn a {
+  display: inline-block;
+  width: 100px;
+  height: 38px;
+  margin: 5px 20px 60px 0;
+  text-align: center;
+  font: 600 16px/38px 'microsoft soft';
+  color: #FFF;
+  background: #A41F24;
+}
+
+/* line 331, ../sass/index.scss */
+.cover {
+  position: absolute;
+  width: 100%;
+  height: 2800px;
+  left: 0;
+  top: 0;
+  background: #909090;
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+  z-index: 120;
+}
+
+/* line 343, ../sass/index.scss */
+.popCon {
+  position: absolute;
+  width: 400px;
+  height: 260px;
+  left: 50%;
+  top: 50%;
+  margin-left: -200px;
+  margin-top: -130px;
+  z-index: 200;
+  background: #FFF;
+  border: 1px solid #A41F24;
+}
+/* line 354, ../sass/index.scss */
+.popCon .btn-close {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  right: 5px;
+  top: 5px;
+  background: url(../images/close.png) no-repeat;
+}
+/* line 362, ../sass/index.scss */
+.popCon h2 {
+  height: 24px;
+  background: #A41F24;
+  font: 600 14px/24px 'simsun';
+  color: #fff;
+  text-indent: 10px;
+}
+/* line 369, ../sass/index.scss */
+.popCon .con {
+  padding: 30px;
+}
+/* line 371, ../sass/index.scss */
+.popCon .con p {
+  font: 600 14px/28px 'simsun';
+  color: #A41F24;
+  text-align: center;
+  margin-bottom: 20px;
+}
+/* line 377, ../sass/index.scss */
+.popCon .con .btn {
+  text-align: center;
+}
+/* line 379, ../sass/index.scss */
+.popCon .con .btn a {
+  display: inline-block;
+  width: 100px;
+  height: 38px;
+  margin: 5px 20px 60px 0;
+  text-align: center;
+  font: 600 16px/38px 'microsoft soft';
+  color: #FFF;
+  background: #A41F24;
+}
