@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class RequirementType extends AbstractType
+class UserType extends AbstractType
 {
         /**
      * @param FormBuilderInterface $builder
@@ -15,15 +15,10 @@ class RequirementType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('subject')
-            ->add('sports')
-            ->add('company')
-            ->add('province')
-            ->add('city')
-            ->add('description')
-            ->add('update_time')
-            ->add('report_time')
-        ->add('contact')
+            ->add('name')
+            ->add('email')
+            ->add('password')
+            ->add('createdAt')
         ;
     }
     
@@ -33,7 +28,7 @@ class RequirementType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Site\Bundle\PlatformBundle\Entity\Requirement'
+            'data_class' => 'Site\Bundle\PlatformBundle\Entity\User'
         ));
     }
 
@@ -42,6 +37,6 @@ class RequirementType extends AbstractType
      */
     public function getName()
     {
-        return 'site_bundle_platformbundle_requirement';
+        return 'site_bundle_platformbundle_user';
     }
 }

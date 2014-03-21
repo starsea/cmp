@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="Company\BlogBundle\Repository\UserRepository")
+ * @ORM\Entity(repositoryClass="Site\Bundle\PlatformBundle\Entity\UserRepository")
  * @ORM\Table(name="user")
  */
 class User
