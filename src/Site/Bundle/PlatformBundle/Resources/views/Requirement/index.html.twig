@@ -4,31 +4,36 @@
 
 {% block content %}
 
-    <div class="demand-con">
+    <div class="demand-con" xmlns="http://www.w3.org/1999/html">
         <div class="searchBar">
-            <a href="addDemand.html" class="addDemand">+ 新增需求</a>
-            <select name="item" id="" class="item">
-                <option value="">-运动项目-</option>
-                <option value="">篮球</option>
-                <option value="">足球</option>
-                <option value="">乒乓球</option>
-                <option value="">网球</option>
-                <option value="">羽毛球</option>
-                <option value="">综合|其他</option>
-            </select>
-            <input class="Wdate" type="text" onClick="WdatePicker()">
-            <input class="Wdate" type="text" onClick="WdatePicker()">
-            <select name="country" id="country" class="liandong">
+            <a href="#" class="addDemand">+ 新增资源</a>
 
-            </select>
-            <select name="province" id="province" class="liandong">
+            <form action="{{ path('requirement') }}" method="get" {{ form_enctype(form) }}>
 
-            </select>
-            <select name="city" id="city" class="liandong">
+                {{ form_errors(form.sports) }}
+                {{ form_widget(form.sports , {'attr': {'class': 'item'} }) }}
 
-            </select>
-            <input type="text" class="keywords" value="请输入关键字查询">
-            <a href="#" class="searchBtn">搜索</a>
+                {{ form_errors(form.updateTimeMin) }}
+                {{ form_widget(form.updateTimeMin , {'attr': {'class': 'Wdate'} }) }}
+
+                {{ form_errors(form.updateTimeMax) }}
+                {{ form_widget(form.updateTimeMax , {'attr': {'class': 'Wdate'} }) }}
+
+
+                {{ form_errors(form.country) }}
+                {{ form_widget(form.country , {'attr': {'class': 'liandong'} }) }}
+
+                {{ form_errors(form.province) }}
+                {{ form_widget(form.province, {'attr': {'class': 'liandong'} }) }}
+
+
+                {{ form_errors(form.city) }}
+                {{ form_widget(form.city, {'attr': {'class': 'liandong'} }) }}
+
+                {{ form_widget(form.keywords,{'attr': {'class': 'keywords'} }) }}
+
+                <input class="searchBtn" type="submit" value="搜索"/>
+            </form>
 
         </div>
         <table border='0' cellspacing='0' cellpadding='0' width="100%" class="demand-table">
@@ -42,126 +47,20 @@
                 <th width="8%">反馈时间</th>
                 <th width="11%">...</th>
             </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><a href="updateDemand.html">修改</a> | <a href="#" class="del">删除</a></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><a href="updateDemand.html">修改</a> | <a href="#" class="del">删除</a></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><a href="updateDemand.html">修改</a> | <a href="#" class="del">删除</a></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><a href="#">修改</a> | <a href="#">删除</a></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><a href="#">修改</a> | <a href="#">删除</a></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><a href="#">修改</a> | <a href="#">删除</a></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><a href="#">修改</a> | <a href="#">删除</a></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><a href="#">修改</a> | <a href="#">删除</a></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><a href="#">修改</a> | <a href="#">删除</a></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><a href="#">修改</a> | <a href="#">删除</a></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><a href="#">修改</a> | <a href="#">删除</a></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><a href="#">修改</a> | <a href="#">删除</a></td>
-            </tr>
+            {% for entity in entities %}
+                <tr>
+                    <td>{% if entity.updatetime %}{{ entity.updatetime|date('Y-m-d') }}{% endif %}</td>
+                    <td>{% if entity.sports %}{{ entity.getSportsZh }}{% endif %}</td>
+                    <td>{{ entity.company }}</td>
+                    <td>{{ entity.province }}</td>
+                    <td><a href="{{ path('requirement_show', { 'id': entity.id }) }}">{{ entity.subject }}</a></td>
+                    <td>{% if entity.contact %}{{ entity.contact.name }}{% endif %}</td>
+                    <td>{% if entity.reporttime %}{{ entity.reporttime|date('Y-m-d') }}{% endif %}</td>
+
+                    <td><a href="{{ path('requirement_show', { 'id': entity.id }) }}">show</a>| <a
+                                href="{{ path('requirement_edit', { 'id': entity.id }) }}">edit</a></td>
+                </tr>
+            {% endfor %}
         </table>
 
         <div class="pageWrap">
@@ -187,30 +86,31 @@
 
 {% block javascripts %}
     {{ parent() }}
-    {% javascripts '@SitePlatformBundle/Resources/public/js/area.js' %}
+    {% javascripts
+    '@SitePlatformBundle/Resources/public/js/area.js' %}
     <script src="{{ asset_url }}" type="text/javascript"></script>
 
     <script>
-        _init_area('','','');
-        $('.keywords').focus(function(){
-            if($(this).val() == '请输入关键字查询'){
+        _init_area('', '', '');
+        $('.keywords').focus(function () {
+            if ($(this).val() == '请输入关键字查询') {
                 $(this).val('');
             }
-        }).blur(function(){
-            if($(this).val() == ''){
+        }).blur(function () {
+            if ($(this).val() == '') {
                 $(this).val('请输入关键字查询');
             }
         })
-        $('.del').on('click',function(){
+        $('.del').on('click', function () {
             var show = showVideo.create({
-                wid:400,
-                hei:180
+                wid: 400,
+                hei: 180
             });
             show.init();
-            $('.cover').bind('click',function(){
+            $('.cover').bind('click', function () {
                 $(".popCon,.cover").remove();
             })
-            $('.confirm').bind('click',function(){
+            $('.confirm').bind('click', function () {
 
             })
         })

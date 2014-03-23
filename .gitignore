@@ -1,3 +1,9 @@
 *.md
 app/cache
 app/logs
+web/assetic
+web/bundles/
+web/css
+web/js
+*.php~
+*_bak*

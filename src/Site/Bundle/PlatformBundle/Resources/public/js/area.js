@@ -466,7 +466,7 @@ dsy.add("0_0_32_0",["澳门特别行政区"]);
 dsy.add("0_0_33",["台北","高雄","台中","花莲","基隆","嘉义","金门","连江","苗栗","南投","澎湖","屏东","台东","台南","桃园","新竹","宜兰","云林","彰化"]);
 dsy.add("0_0_33_0",[" "]);
 
-var s=['country',"province","city"];//三个select的name
+var s=['form_country',"form_province","form_city"];//三个select的name
 var opt0 = ['国家',"省份/州","城市"];//初始值
 function _init_area(a,b,c){  //初始化函数
 	for(i=0;i<s.length-1;i++){

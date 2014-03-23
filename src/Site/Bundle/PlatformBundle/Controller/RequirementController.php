@@ -31,7 +31,7 @@ class RequirementController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        $defaultData = array();
+        $defaultData = array('keywords'=>'请输入关键字查询');
 
         //list search form
         $form = $this->createFormBuilder($defaultData)
@@ -57,13 +57,22 @@ class RequirementController extends Controller
                 'widget' => 'single_text',
                 'required' => false,
             ))
-            ->add('province','choice',array(
+            ->add('country', 'choice', array(
+                'required' => false,
+                'empty_value' => '-运动项目-',
+                'empty_data' => null
+            ))
+            ->add('province', 'choice', array(
                 'required' => false,
             ))
-            ->add('city','choice',array(
+            ->add('city', 'choice', array(
                 'required' => false,
             ))
-            ->add('keywords', 'text',array())
+            ->add('keywords', 'text', array(
+                'required' => false,
+                'empty_data' => 's'
+
+            ))
 
 //            ->add('time', new TestType(), array(
 //                'data_class' => 'Site\\Bundle\\PlatformBundle\\Entity\\Requirement'
