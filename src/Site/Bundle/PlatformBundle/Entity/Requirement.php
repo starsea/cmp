@@ -26,7 +26,7 @@ class Requirement
 
     // 运动项目
     public static $sportsZhArr = array(
-        self::SPORTS_BASKETBALL => '乒乓球',
+        self::SPORTS_BASKETBALL => '篮球',
         self::SPORTS_FOOTBALL => '足球',
         self::SPORTS_BADMINTON => '羽毛球',
         self::SPORTS_TENNIS => '网球',

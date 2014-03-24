@@ -21,30 +21,36 @@ class RequirementRepository extends EntityRepository
 
         foreach ($data as $field => $value) {
 
-            if (!$this->getClassMetadata()->hasField($field)) {
-                continue;
-            }
-            // like  操他妈的 这需求 产品脑子被驴踢了？
-            if (in_array($field, array('keywords','subject', 'description'))) {
+            // like  fuck this...
+            if (in_array($field, array('keywords', 'subject', 'description'))) {
 //                $qb->andWhere('i.' . $field . ' like ' . ':' . $field)
 //                    ->setParameter($field, '%' . $value . '%');
                 $qb->andWhere("i.subject like %{$value}% or i.description like %{$value}%");
                 continue;
             }
+            // 时间范围搜索
+            if (in_array($field, array('updateTimeMin', 'updateTimeMax'))) {
 
-//            // 时间 array
-//            if (in_array($field, array('startTime', 'endTime'))) {
-//
-//                $qb->andWhere('i.' . $field . ' = ' . ':' . $field)
-//                    ->setParameter($field, $value['year'].'-'.$value['month'].'-'.$value['day']);
-//                continue;
-//            }
+                if ($field == 'updateTimeMin')
+                    $operator = '>';
+                else
+                    $operator = '<';
+
+                $qb->andWhere('i.' . 'updateTime' . " {$operator} " . ':' . $field)
+                    ->setParameter($field, $value);
+                continue;
+            }
+
+            //filter
+            if (!$this->getClassMetadata()->hasField($field)) {
+                continue;
+            }
 
             $qb->andWhere($qb->expr()->eq('i.' . $field, ':' . $field))
                 ->setParameter($field, $value);
         }
 
-       //var_dump( $qb->getQuery()->getParameters());
+        //var_dump( $qb->getQuery()->getParameters());
         return $qb->getQuery()->getResult();
     }
 }

@@ -28,10 +28,9 @@ class RequirementController extends Controller
      */
     public function indexAction(Request $request)
     {
-
         $em = $this->getDoctrine()->getManager();
 
-        $defaultData = array('keywords'=>'请输入关键字查询');
+        $defaultData = array('keywords' => '请输入关键字查询');
 
         //list search form
         $form = $this->createFormBuilder($defaultData)
@@ -43,12 +42,6 @@ class RequirementController extends Controller
                 'empty_value' => '-运动项目-',
                 'empty_data' => null
             ))
-//            ->add('company', 'choice', array(
-//                'required' => false,
-//                'label' => '分类',
-//                'empty_value' => '-需求分类-',
-//                'empty_data' => null
-//            ))
             ->add('updateTimeMin', 'date', array(
                 'widget' => 'single_text',
                 'required' => false,
@@ -80,25 +73,47 @@ class RequirementController extends Controller
 
             ->getForm();
 
+        var_dump($request->query->get('form'));
 
-        if (!$request->query->get('form')) {
+        $formData = $request->query->get('form');
+
+        if (!$formData) {
 
             $entities = $em->getRepository('SitePlatformBundle:Requirement')->findAll();
 
         } else {
 
-            var_dump($request->query->get('form'));
-            $params = array_filter($request->query->get('form'));
+            $params = $this->filterSearchData($formData);
+            var_dump($params);
 
             $entities = $em->getRepository('SitePlatformBundle:Requirement')->search($params);
         };
-
 
         return array(
             'entities' => $entities,
             'form' => $form->createView(),
         );
 
+    }
+
+    //过滤
+    protected function filterSearchData(Array $data)
+    {
+        $data = array_filter($data);
+
+        if ($data['keywords'] == '请输入关键字查询') {
+            unset($data['keywords']);
+        }
+        if ($data['country'] == '国家') {
+            unset($data['country']);
+        }
+        if ($data['province'] == '省份/州') {
+            unset($data['province']);
+        }
+        if ($data['city'] == '城市') {
+            unset($data['city']);
+        }
+        return $data;
     }
 
     /**
