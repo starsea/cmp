@@ -17,11 +17,7 @@ class Requirement
     const SPORTS_BADMINTON = 'badminton';
     const SPORTS_TENNIS = 'tennis';
     const SPORTS_PINGPANG = 'pingpang';
-    const SPORTS_OTHER= 'other';
-
-
-
-
+    const SPORTS_OTHER = 'other';
 
 
     // 运动项目
@@ -34,6 +30,10 @@ class Requirement
         self::SPORTS_OTHER => '其他',
     );
 
+    const DEPARTMENT_COUNTRY = '国家部门 | 协会';
+    const DEPARTMENT_LOCAL = '地方部门 | 协会';
+    const DEPARTMENT_INTERNATIONAL = '国际组织 | 经纪人';
+    const DEPARTMENT_OTHER = '其他';
 
     /**
      * @var integer
@@ -69,6 +69,14 @@ class Requirement
     /**
      * @var string
      *
+     * @ORM\Column(name="country", type="string", length=255)
+     */
+    private $country;
+
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="province", type="string", length=255)
      */
     private $province;
@@ -79,7 +87,6 @@ class Requirement
      * @ORM\Column(name="city", type="string", length=255)
      */
     private $city;
-
 
 
     /**
@@ -119,9 +126,16 @@ class Requirement
 
 
     /**
+     * @var string //部门
+     *
+     * @ORM\Column(name="department", type="string", length=255)
+     */
+    private $department;
+
+    /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -144,7 +158,7 @@ class Requirement
     /**
      * Get subject
      *
-     * @return string 
+     * @return string
      */
     public function getSubject()
     {
@@ -167,7 +181,7 @@ class Requirement
     /**
      * Get sports
      *
-     * @return string 
+     * @return string
      */
     public function getSports()
     {
@@ -190,7 +204,7 @@ class Requirement
     /**
      * Get company
      *
-     * @return string 
+     * @return string
      */
     public function getCompany()
     {
@@ -213,7 +227,7 @@ class Requirement
     /**
      * Get province
      *
-     * @return string 
+     * @return string
      */
     public function getProvince()
     {
@@ -236,7 +250,7 @@ class Requirement
     /**
      * Get city
      *
-     * @return string 
+     * @return string
      */
     public function getCity()
     {
@@ -259,7 +273,7 @@ class Requirement
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -282,7 +296,7 @@ class Requirement
     /**
      * Get updateTime
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdateTime()
     {
@@ -305,7 +319,7 @@ class Requirement
     /**
      * Get reportTime
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getReportTime()
     {
@@ -328,7 +342,7 @@ class Requirement
     /**
      * Get contact
      *
-     * @return \Site\Bundle\PlatformBundle\Entity\User 
+     * @return \Site\Bundle\PlatformBundle\Entity\User
      */
     public function getContact()
     {
@@ -344,6 +358,56 @@ class Requirement
     public function getSportsZh()
     {
         $sports = self::$sportsZhArr;
-        return $sports[$this->sports];
+        if ($this->sports) {
+            return $sports[$this->sports];
+        } else {
+            return '';
+        }
+    }
+
+    /**
+     * Set country
+     *
+     * @param string $country
+     * @return Requirement
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * Get country
+     *
+     * @return string
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * Set department
+     *
+     * @param string $department
+     * @return Requirement
+     */
+    public function setDepartment($department)
+    {
+        $this->department = $department;
+
+        return $this;
+    }
+
+    /**
+     * Get department
+     *
+     * @return string
+     */
+    public function getDepartment()
+    {
+        return $this->department;
     }
 }
