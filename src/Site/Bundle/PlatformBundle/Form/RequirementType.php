@@ -21,9 +21,9 @@ class RequirementType extends AbstractType
             ->add('province')
             ->add('city')
             ->add('description')
-            ->add('update_time')
-            ->add('report_time')
-        ->add('contact')
+           //->add('updateTime')
+            ->add('reportTime')
+        //->add('contact')
         ;
     }
     
