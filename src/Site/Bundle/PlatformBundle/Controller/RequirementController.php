@@ -2,7 +2,6 @@
 
 namespace Site\Bundle\PlatformBundle\Controller;
 
-use Site\Bundle\PlatformBundle\Form\TestType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -32,48 +31,9 @@ class RequirementController extends Controller
 
         $defaultData = array('keywords' => '请输入关键字查询');
 
-        //list search form
-        $form = $this->createFormBuilder($defaultData)
 
-            ->add('sports', 'choice', array(
-                'choices' => Requirement::$sportsZhArr,
-                'required' => false,
-                'label' => '状态',
-                'empty_value' => '-运动项目-',
-                'empty_data' => null
-            ))
-            ->add('updateTimeMin', 'date', array(
-                'widget' => 'single_text',
-                'required' => false,
-            ))
-            ->add('updateTimeMax', 'date', array(
-                'widget' => 'single_text',
-                'required' => false,
-            ))
-            ->add('country', 'choice', array(
-                'required' => false,
-                'empty_value' => '-运动项目-',
-                'empty_data' => null
-            ))
-            ->add('province', 'choice', array(
-                'required' => false,
-            ))
-            ->add('city', 'choice', array(
-                'required' => false,
-            ))
-            ->add('keywords', 'text', array(
-                'required' => false,
-                'empty_data' => 's'
+        $form = $this->get('site.common.controller')->createSearchForm($defaultData);
 
-            ))
-
-//            ->add('time', new TestType(), array(
-//                'data_class' => 'Site\\Bundle\\PlatformBundle\\Entity\\Requirement'
-//            ))
-
-            ->getForm();
-
-        var_dump($request->query->get('form'));
 
         $formData = $request->query->get('form');
 
@@ -91,7 +51,7 @@ class RequirementController extends Controller
 
         return array(
             'entities' => $entities,
-            'form' => $form->createView(),
+            'form' => $form,
         );
 
     }

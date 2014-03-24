@@ -1,0 +1,8 @@
+parameters:
+    # ...
+    site.controller.common.class: Site\Bundle\PlatformBundle\Controller\CommonController
+
+services:
+    site.common.controller:
+        class: "%site.controller.common.class%"
+        arguments: ['@service_container']
