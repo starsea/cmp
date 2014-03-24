@@ -25,7 +25,7 @@ class RequirementRepository extends EntityRepository
             if (in_array($field, array('keywords', 'subject', 'description'))) {
 //                $qb->andWhere('i.' . $field . ' like ' . ':' . $field)
 //                    ->setParameter($field, '%' . $value . '%');
-                $qb->andWhere("i.subject like %{$value}% or i.description like %{$value}%");
+                $qb->andWhere("i.subject like '%{$value}%' or i.description like '%{$value}%'");
                 continue;
             }
             // 时间范围搜索
