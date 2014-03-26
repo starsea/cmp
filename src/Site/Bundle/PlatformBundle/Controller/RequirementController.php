@@ -88,6 +88,7 @@ class RequirementController extends Controller
         $entity = new Requirement();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
+       // var_dump($form);exit;
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -231,7 +232,7 @@ class RequirementController extends Controller
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
-
+     //   var_dump(111111);exit;
         if ($editForm->isValid()) {
             $em->flush();
 

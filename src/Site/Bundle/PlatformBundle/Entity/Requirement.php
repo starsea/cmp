@@ -30,10 +30,30 @@ class Requirement
         self::SPORTS_OTHER => '其他',
     );
 
-    const DEPARTMENT_COUNTRY = '国家部门 | 协会';
-    const DEPARTMENT_LOCAL = '地方部门 | 协会';
-    const DEPARTMENT_INTERNATIONAL = '国际组织 | 经纪人';
-    const DEPARTMENT_OTHER = '其他';
+    //部门
+    const DEPARTMENT_COUNTRY = 'country';
+    const DEPARTMENT_LOCAL = 'local';
+    const DEPARTMENT_INTERNATIONAL = 'international';
+    const DEPARTMENT_OTHER = 'other';
+
+
+    //
+    public static $departmentZhArr = array(
+        self::DEPARTMENT_COUNTRY => '国家部门 | 协会',
+        self::DEPARTMENT_LOCAL => '地方部门 | 协会',
+        self::DEPARTMENT_INTERNATIONAL => '国际组织 | 经纪人',
+        self::DEPARTMENT_OTHER => '其他',
+
+    );
+
+
+    /**
+     * Constructs a new instance of User
+     */
+    public function __construct()
+    {
+        $this->updateTime = new \DateTime();
+    }
 
     /**
      * @var integer
@@ -360,6 +380,22 @@ class Requirement
         $sports = self::$sportsZhArr;
         if ($this->sports) {
             return $sports[$this->sports];
+        } else {
+            return '';
+        }
+    }
+
+
+    /**
+     * Get department for chinese
+     *
+     * @return string
+     */
+    public function getDepartmentZh()
+    {
+        $department = self::$departmentZhArr;
+        if ($this->department) {
+            return $department[$this->department];
         } else {
             return '';
         }

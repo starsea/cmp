@@ -20,19 +20,31 @@ class RequirementType extends AbstractType
             ->add('subject')
             ->add('sports', 'choice', array(
                 'choices' => Requirement::$sportsZhArr,
-                'required' => false,
-                'label' => '状态',
+                //'required' => false,
+                'label' => '运动项目',
                 'empty_value' => '-运动项目-',
                 'empty_data' => null
             ))
-            ->add('company')
+            ->add('company', 'choice', array(
+                'choices' => Requirement::$departmentZhArr,
+              //  'required' => false,
+                'label' => '单位性质',
+                'empty_value' => '-单位性质-',
+                'empty_data' => ''
+            ))
             ->add('country')
             ->add('province')
             ->add('city')
             ->add('description')
            // ->add('updateTime')
             ->add('reportTime')
-            ->add('department')
+            ->add('department', 'choice', array(
+                'choices' => Requirement::$departmentZhArr,
+               // 'required' => false,
+                'label' => '单位性质',
+                'empty_value' => '-单位性质-',
+                'empty_data' => 'ss'
+            ))
             ->add('contact', 'entity', array(
                 'class' => 'SitePlatformBundle:User',
                 'property' => 'name',
