@@ -30,18 +30,35 @@ class Requirement
         self::SPORTS_OTHER => '其他',
     );
 
-    //部门
-    const DEPARTMENT_COUNTRY = 'country';
-    const DEPARTMENT_LOCAL = 'local';
-    const DEPARTMENT_INTERNATIONAL = 'international';
-    const DEPARTMENT_OTHER = 'other';
+    /* const start */
+    const COMPANY_TYPE_COUNTRY = 'country';
+    const COMPANY_TYPE_LOCAL = 'local';
+    const COMPANY_TYPE_INTERNATIONAL = 'international';
+    const COMPANY_TYPE_OTHER = 'other';
 
+
+    public static $companyTypeZhArr = array(
+        self::COMPANY_TYPE_COUNTRY => '国家部门 | 协会',
+        self::COMPANY_TYPE_LOCAL => '地方部门 | 协会',
+        self::COMPANY_TYPE_INTERNATIONAL => '国际组织 | 经纪人',
+        self::COMPANY_TYPE_OTHER => '其他',
+
+    );
+    /* const end */
+
+
+
+    /*const */
+    const DEPARTMENT_EVENTS = 'EVENTS';
+    const DEPARTMENT_TECHNOLOGY = 'TECHNOLOGY';
+    const DEPARTMENT_MARKET = 'MARKET';
+    const DEPARTMENT_OTHER = 'OTHER';
 
     //
     public static $departmentZhArr = array(
-        self::DEPARTMENT_COUNTRY => '国家部门 | 协会',
-        self::DEPARTMENT_LOCAL => '地方部门 | 协会',
-        self::DEPARTMENT_INTERNATIONAL => '国际组织 | 经纪人',
+        self::DEPARTMENT_EVENTS => '赛事中心',
+        self::DEPARTMENT_TECHNOLOGY => '技术中心',
+        self::DEPARTMENT_MARKET => '营销中心',
         self::DEPARTMENT_OTHER => '其他',
 
     );
@@ -82,9 +99,9 @@ class Requirement
     /**
      * @var string //单位性质
      *
-     * @ORM\Column(name="company", type="string", length=255)
+     * @ORM\Column(name="company_type", type="string", length=255)
      */
-    private $company;
+    private $companyType;
 
     /**
      * @var string
@@ -208,28 +225,7 @@ class Requirement
         return $this->sports;
     }
 
-    /**
-     * Set company
-     *
-     * @param string $company
-     * @return Requirement
-     */
-    public function setCompany($company)
-    {
-        $this->company = $company;
 
-        return $this;
-    }
-
-    /**
-     * Get company
-     *
-     * @return string
-     */
-    public function getCompany()
-    {
-        return $this->company;
-    }
 
     /**
      * Set province
@@ -387,7 +383,7 @@ class Requirement
 
 
     /**
-     * Get department for chinese
+     * Get getDepartmentZh
      *
      * @return string
      */
@@ -396,6 +392,22 @@ class Requirement
         $department = self::$departmentZhArr;
         if ($this->department) {
             return $department[$this->department];
+        } else {
+            return '';
+        }
+    }
+
+
+    /**
+     * Get getCompanyTypeZh
+     *
+     * @return string
+     */
+    public function getCompanyTypeZh()
+    {
+        $arr = self::$companyTypeZhArr;
+        if ($this->companyType) {
+            return $arr[$this->companyType];
         } else {
             return '';
         }
@@ -445,5 +457,28 @@ class Requirement
     public function getDepartment()
     {
         return $this->department;
+    }
+
+    /**
+     * Set companyType
+     *
+     * @param string $companyType
+     * @return Requirement
+     */
+    public function setCompanyType($companyType)
+    {
+        $this->companyType = $companyType;
+
+        return $this;
+    }
+
+    /**
+     * Get companyType
+     *
+     * @return string 
+     */
+    public function getCompanyType()
+    {
+        return $this->companyType;
     }
 }

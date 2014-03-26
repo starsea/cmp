@@ -51,8 +51,8 @@
                 <tr>
                     <td>{% if entity.updatetime %}{{ entity.updatetime|date('Y-m-d') }}{% endif %}</td>
                     <td>{% if entity.sports %}{{ entity.getSportsZh }}{% endif %}</td>
-                    <td>{{ entity.company }}</td>
-                    <td>{{ entity.province }}</td>
+                    <td>{{ entity.companyTypeZh }}</td>
+                    <td>{{ entity.country }}</td>
                     <td><a href="{{ path('requirement_show', { 'id': entity.id }) }}">{{ entity.subject }}</a></td>
                     <td>{% if entity.contact %}{{ entity.contact.name }}{% endif %}</td>
                     <td>{% if entity.reporttime %}{{ entity.reporttime|date('Y-m-d') }}{% endif %}</td>

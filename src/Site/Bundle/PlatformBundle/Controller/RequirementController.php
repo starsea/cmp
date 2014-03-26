@@ -44,7 +44,7 @@ class RequirementController extends Controller
         } else {
 
             $params = $this->filterSearchData($formData);
-            var_dump($params);
+           // var_dump($params);
 
             $entities = $em->getRepository('SitePlatformBundle:Requirement')->search($params);
         };
@@ -118,7 +118,7 @@ class RequirementController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+       // $form->add('submit', 'submit', array('label' => 'Create'));
 
         return $form;
     }
@@ -207,7 +207,7 @@ class RequirementController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        //$form->add('submit', 'submit', array('label' => '更新'));
 
         return $form;
     }

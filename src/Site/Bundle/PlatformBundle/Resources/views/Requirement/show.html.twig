@@ -18,8 +18,7 @@
         </div>
         <div class="show-company">
             <strong>单位性质：</strong>
-
-            <p>{{ entity.company }}</p>
+            <p>{{ entity.companyTypeZh }}</p>
         </div>
         <div class="show-area">
             <strong>所属地区：</strong>
@@ -40,7 +39,7 @@
         <div class="show-people">
             <strong>联络人及部门：</strong>
 
-            <p><span>{{ entity.department }}</span> -
+            <p><span>{{ entity.departmentZh }}</span> -
                 <span>{% if entity.contact %}{{ entity.contact.name }}{% endif %}</span></p>
         </div>
         <div class="demond-time">

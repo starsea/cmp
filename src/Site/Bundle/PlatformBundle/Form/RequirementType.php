@@ -25,22 +25,22 @@ class RequirementType extends AbstractType
                 'empty_value' => '-运动项目-',
                 'empty_data' => null
             ))
-            ->add('company', 'choice', array(
-                'choices' => Requirement::$departmentZhArr,
-              //  'required' => false,
+            ->add('companyType', 'choice', array(
+                'choices' => Requirement::$companyTypeZhArr,
+                //  'required' => false,
                 'label' => '单位性质',
                 'empty_value' => '-单位性质-',
                 'empty_data' => ''
             ))
-            ->add('country')
-            ->add('province')
-            ->add('city')
+            ->add('country', 'hidden')
+            ->add('province', 'hidden')
+            ->add('city', 'hidden')
             ->add('description')
-           // ->add('updateTime')
+            // ->add('updateTime')
             ->add('reportTime')
             ->add('department', 'choice', array(
                 'choices' => Requirement::$departmentZhArr,
-               // 'required' => false,
+                // 'required' => false,
                 'label' => '单位性质',
                 'empty_value' => '-单位性质-',
                 'empty_data' => 'ss'
@@ -49,10 +49,8 @@ class RequirementType extends AbstractType
                 'class' => 'SitePlatformBundle:User',
                 'property' => 'name',
                 'query_builder' => function (EntityRepository $repository) {
-                        return $repository->createQueryBuilder('u')
-                           ;
-                    }))
-        ;
+                        return $repository->createQueryBuilder('u');
+                    }));
     }
 
 

@@ -51,7 +51,7 @@ class CommonController extends Controller
             ))
             ->add('keywords', 'text', array(
                 'required' => false,
-                'empty_data' => 's'
+                'empty_data' => ''
 
             ))
 
