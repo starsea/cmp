@@ -2,13 +2,15 @@
 
 namespace Site\Bundle\PlatformBundle\Form;
 
+use Doctrine\ORM\EntityRepository;
+use Site\Bundle\PlatformBundle\Entity\Requirement;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class RequirementType extends AbstractType
 {
-        /**
+    /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
@@ -16,17 +18,32 @@ class RequirementType extends AbstractType
     {
         $builder
             ->add('subject')
-            ->add('sports')
+            ->add('sports', 'choice', array(
+                'choices' => Requirement::$sportsZhArr,
+                'required' => false,
+                'label' => '状态',
+                'empty_value' => '-运动项目-',
+                'empty_data' => null
+            ))
             ->add('company')
+            ->add('country')
             ->add('province')
             ->add('city')
             ->add('description')
-           //->add('updateTime')
+           // ->add('updateTime')
             ->add('reportTime')
-        //->add('contact')
+            ->add('department')
+            ->add('contact', 'entity', array(
+                'class' => 'SitePlatformBundle:User',
+                'property' => 'name',
+                'query_builder' => function (EntityRepository $repository) {
+                        return $repository->createQueryBuilder('u')
+                           ;
+                    }))
         ;
     }
-    
+
+
     /**
      * @param OptionsResolverInterface $resolver
      */

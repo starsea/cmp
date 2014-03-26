@@ -1,14 +1,81 @@
 {% extends 'SitePlatformBundle::layout.html.twig' %}
 
 {% block content %}
-    <h1>Requirement edit</h1>
+
+    <form class="addDemond">
+        <h2>需求管理>添加需求</h2>
+        <div class="demond-theme">
+            <strong>需求主题：</strong><br>
+            {{ form_widget(edit_form.subject , {'attr': {'class': 'theme'} }) }}
+        </div>
+        <div class="demond-item">
+            <strong>运动项目：</strong><br>
+            {{ form_widget(edit_form.sports , {'attr': {'class': 'item'} }) }}
+        </div>
+        <div class="demond-company">
+            <strong>单位性质：</strong><br>
+            <select name="company" id="" class="company">
+                <option value="">-单位性质-</option>
+                <option value="">国家部门 | 协会</option>
+                <option value="">地方部门 | 协会</option>
+                <option value="">国际组织 | 经纪人</option>
+                <option value="">其他</option>
+
+            </select>
+        </div>
+        <div class="selWrap">
+            <div class="sel1">
+                <strong>国家/地区：</strong><br>
+                <select name="country" id="country" class="liandong"></select>
+            </div>
+            <div class="sel2">
+                <strong>省/州：</strong><br>
+                <select name="province" id="province" class="liandong"></select>
+            </div>
+            <div class="sel3">
+                <strong>市：</strong><br>
+                <select name="city" id="city" class="liandong"></select>
+            </div>
+        </div>
+        <div class="demond-desc">
+            <strong>需求简述：</strong><br>
+            <textarea name="" id="" cols="50" rows="10"></textarea>
+        </div>
+        <div class="selWrap2">
+            <div class="sel4">
+                <strong>联络人：</strong><br>
+                {{ form_widget(edit_form.contact , {'attr': {'class': 'liandong'} }) }}
+            </div>
+            <div class="sel5">
+                <strong>部门：</strong><br>
+                <select name="name" id="name" class="liandong">
+                    <option value="">-请选择-</option>
+                    <option value="">营销中心</option>
+                    <option value="">技术中心</option>
+                    <option value="">赛事中心</option>
+                </select>
+            </div>
+        </div>
+        <div class="demond-time">
+            <strong>反馈时间：</strong>
+            <br/>
+            {{ form_widget(edit_form.reportTime , {'attr': {'class': 'Wdate'} }) }}
+        </div>
+        <div class="demond-btn">
+            <input type="submit" class="add" value="更新">
+            <a href="{{ path('requirement') }}" class="del">
+                返回
+            </a>
+
+        </div>
+    </form>
 
     {{ form(edit_form) }}
 
         <ul class="record_actions">
     <li>
-        <a href="{{ path('requirement') }}">
-            Back to the list
+        <a href="{{ path('requirement') }}" class="del">
+            返回
         </a>
     </li>
     <li>{{ form(delete_form) }}</li>
