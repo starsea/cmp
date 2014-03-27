@@ -3,10 +3,10 @@
 namespace Site\Bundle\PlatformBundle\Form;
 
 use Doctrine\ORM\EntityRepository;
-use Site\Bundle\PlatformBundle\Entity\Requirement;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Site\Bundle\PlatformBundle\lib\MyConst;
 
 class RequirementType extends AbstractType
 {
@@ -19,14 +19,14 @@ class RequirementType extends AbstractType
         $builder
             ->add('subject')
             ->add('sports', 'choice', array(
-                'choices' => Requirement::$sportsZhArr,
+                'choices' => MyConst::$sportsZhArr,
                 //'required' => false,
                 'label' => '运动项目',
                 'empty_value' => '-请选择-',
                 'empty_data' => null
             ))
             ->add('companyType', 'choice', array(
-                'choices' => Requirement::$companyTypeZhArr,
+                'choices' => MyConst::$companyTypeZhArr,
                 //  'required' => false,
                 'label' => '单位性质',
                 'empty_value' => '-请选择-',
@@ -39,7 +39,7 @@ class RequirementType extends AbstractType
             // ->add('updateTime')
             ->add('reportTime')
             ->add('department', 'choice', array(
-                'choices' => Requirement::$departmentZhArr,
+                'choices' => MyConst::$departmentZhArr,
                 // 'required' => false,
                 'label' => '部门',
                 'empty_value' => '-请选择-',

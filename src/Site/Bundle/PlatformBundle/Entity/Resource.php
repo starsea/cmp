@@ -3,6 +3,7 @@
 namespace Site\Bundle\PlatformBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Site\Bundle\PlatformBundle\lib\MyConst;
 
 /**
  * Resource
@@ -392,7 +393,7 @@ class Resource
      */
     public function getSportsZh()
     {
-        $sports = Requirement::$sportsZhArr;
+        $sports = Myconst::$sportsZhArr;
         if ($this->sports) {
             return $sports[$this->sports];
         } else {
@@ -408,7 +409,7 @@ class Resource
      */
     public function getDepartmentZh()
     {
-        $department = Requirement::$departmentZhArr;
+        $department = Myconst::$departmentZhArr;
         if ($this->department) {
             return $department[$this->department];
         } else {
@@ -424,7 +425,7 @@ class Resource
      */
     public function getCompanyTypeZh()
     {
-        $arr = Requirement::$companyTypeZhArr;
+        $arr = Myconst::$companyTypeZhArr;
         if ($this->companyType) {
             return $arr[$this->companyType];
         } else {

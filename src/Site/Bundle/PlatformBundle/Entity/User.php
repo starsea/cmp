@@ -60,6 +60,36 @@ class User
 
 
     /**
+     * @ORM\Column(type="string", length=255,name="department")
+     *
+     * @var string $department
+     */
+    protected $department;
+
+    /**
+     * @ORM\Column(type="string", length=255,name="location")
+     *
+     * @var string $location
+     */
+    protected $location;
+
+
+    /**
+     * @ORM\Column(type="string", length=255,name="phone")
+     *
+     * @var string $phone
+     */
+    protected $phone;
+
+    /**
+     * @ORM\Column(type="string", length=255,name="hupu_account")
+     *
+     * @var string $hupuAccount
+     */
+    protected $hupuAccount;
+
+
+    /**
      * Constructs a new instance of User
      */
     public function __construct()
@@ -203,5 +233,97 @@ class User
     public function getRequirement()
     {
         return $this->requirement;
+    }
+
+    /**
+     * Set department
+     *
+     * @param string $department
+     * @return User
+     */
+    public function setDepartment($department)
+    {
+        $this->department = $department;
+
+        return $this;
+    }
+
+    /**
+     * Get department
+     *
+     * @return string 
+     */
+    public function getDepartment()
+    {
+        return $this->department;
+    }
+
+    /**
+     * Set location
+     *
+     * @param string $location
+     * @return User
+     */
+    public function setLocation($location)
+    {
+        $this->location = $location;
+
+        return $this;
+    }
+
+    /**
+     * Get location
+     *
+     * @return string 
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * Set phone
+     *
+     * @param string $phone
+     * @return User
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * Get phone
+     *
+     * @return string 
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    /**
+     * Set hupuAccount
+     *
+     * @param string $hupuAccount
+     * @return User
+     */
+    public function setHupuAccount($hupuAccount)
+    {
+        $this->hupuAccount = $hupuAccount;
+
+        return $this;
+    }
+
+    /**
+     * Get hupuAccount
+     *
+     * @return string 
+     */
+    public function getHupuAccount()
+    {
+        return $this->hupuAccount;
     }
 }

@@ -5,8 +5,8 @@ namespace Site\Bundle\PlatformBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Site\Bundle\PlatformBundle\Entity\Requirement;
 use Symfony\Component\DependencyInjection\Container;
+use Site\Bundle\PlatformBundle\lib\MyConst;
 
 class CommonController extends Controller
 {
@@ -24,7 +24,7 @@ class CommonController extends Controller
         $form = $this->createFormBuilder($defaultData)
 
             ->add('sports', 'choice', array(
-                'choices' => Requirement::$sportsZhArr,
+                'choices' => MyConst::$sportsZhArr,
                 'required' => false,
                 'label' => '状态',
                 'empty_value' => '-运动项目-',
