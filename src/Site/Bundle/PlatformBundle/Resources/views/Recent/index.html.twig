@@ -1,0 +1,45 @@
+{% extends 'SitePlatformBundle::layout.html.twig' %}
+
+{% block title %}虎扑协作平台{% endblock %}
+
+{% block content %}
+    <div class="new-demand">
+        <h2>最新需求</h2>
+        <table border='0' cellspacing='0' cellpadding='0' width="100%">
+            <tr>
+                <th width="70%">需求标题</th>
+                <th width="15%">操作人</th>
+                <th width="15%">更新时间</th>
+            </tr>
+            {% for entity in requirements %}
+                <tr>
+                    <td><a href="{{ path('requirement_show', { 'id': entity.id }) }}">{{ entity.subject }}</a></td>
+                    <td>{% if entity.contact %}{{ entity.contact.name }}{% endif %}</td>
+                    <td>{% if entity.updateTime %}{{ entity.updateTime|date('Y-m-d') }}{% endif %}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div class="new-demand">
+        <h2>最新资源</h2>
+        <table border='0' cellspacing='0' cellpadding='0' width="100%">
+
+            <tr>
+                <th width="70%">资源标题</th>
+                <th width="15%">操作人</th>
+                <th width="15%">更新时间</th>
+            </tr>
+            {% for entity in resources %}
+                <tr>
+                    <td><a href="{{ path('resource_show', { 'id': entity.id }) }}">{{ entity.subject }}</a></td>
+                    <td>{% if entity.contact %}{{ entity.contact.name }}{% endif %}</td>
+                    <td>{% if entity.updateTime %}{{ entity.updateTime|date('Y-m-d') }}{% endif %}</td>
+                </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+
+
+{% endblock %}

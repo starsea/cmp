@@ -39,24 +39,24 @@
         <table border='0' cellspacing='0' cellpadding='0' width="100%" class="demand-table">
             <tr>
                 <th width="10%">更新时间</th>
+                <th width="25%">BD资源名称</th>
                 <th width="10%">运动项目</th>
                 <th width="15%">单位性质</th>
                 <th width="10%">所属地区</th>
-                <th width="25%">需求主题（点击查看详细）</th>
+                <th width="8%">关系人级别</th>
                 <th width="11%">内部联络人</th>
-                <th width="8%">反馈时间</th>
                 <th width="11%">...</th>
             </tr>
+
             {% for entity in entities %}
                 <tr>
                     <td>{% if entity.updatetime %}{{ entity.updatetime|date('Y-m-d') }}{% endif %}</td>
+                    <td><a href="{{ path('resource_show', { 'id': entity.id }) }}">{{ entity.subject }}</a></td>
                     <td>{% if entity.sports %}{{ entity.getSportsZh }}{% endif %}</td>
                     <td>{{ entity.companyTypeZh }}</td>
                     <td>{{ entity.country }}</td>
-                    <td><a href="{{ path('resource_show', { 'id': entity.id }) }}">{{ entity.subject }}</a></td>
+                    <td>关系人？</td>
                     <td>{% if entity.contact %}{{ entity.contact.name }}{% endif %}</td>
-                    <td>{% if entity.reporttime %}{{ entity.reporttime|date('Y-m-d') }}{% endif %}</td>
-
                     <td><a href="{{ path('resource_show', { 'id': entity.id }) }}">show</a>| <a
                                 href="{{ path('resource_edit', { 'id': entity.id }) }}">edit</a></td>
                 </tr>
