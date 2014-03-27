@@ -25,16 +25,57 @@ class ResourceController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('SitePlatformBundle:Resource')->findAll();
+        $defaultData = array('keywords' => '请输入关键字查询');
+
+
+        $form = $this->get('site.common.controller')->createSearchForm($defaultData);
+
+
+        $formData = $request->query->get('form');
+
+        if (!$formData) {
+
+            $entities = $em->getRepository('SitePlatformBundle:Resource')->findAll();
+
+        } else {
+
+            $params = $this->filterSearchData($formData);
+            // var_dump($params);
+
+            $entities = $em->getRepository('SitePlatformBundle:Resource')->search($params);
+        };
 
         return array(
             'entities' => $entities,
+            'form' => $form,
         );
+
     }
+
+    //过滤
+    protected function filterSearchData(Array $data)
+    {
+        $data = array_filter($data);
+
+        if ($data['keywords'] == '请输入关键字查询') {
+            unset($data['keywords']);
+        }
+        if ($data['country'] == '国家') {
+            unset($data['country']);
+        }
+        if ($data['province'] == '省份/州') {
+            unset($data['province']);
+        }
+        if ($data['city'] == '城市') {
+            unset($data['city']);
+        }
+        return $data;
+    }
+
     /**
      * Creates a new Resource entity.
      *
@@ -76,7 +117,7 @@ class ResourceController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+       // $form->add('submit', 'submit', array('label' => 'Create'));
 
         return $form;
     }
@@ -165,7 +206,7 @@ class ResourceController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+      //  $form->add('submit', 'submit', array('label' => 'Update'));
 
         return $form;
     }

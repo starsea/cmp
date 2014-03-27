@@ -1,68 +1,71 @@
-{% extends '::base.html.twig' %}
+{% extends 'SitePlatformBundle::layout.html.twig' %}
 
-{% block body -%}
-    <h1>Resource</h1>
+{% block content %}
+    <div class="addDemond">
+        <h2>
+            <a href="{{ path('resource') }}">资源管理</a> >查看资源
+        </h2>
 
-    <table class="record_properties">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th>Subject</th>
-                <td>{{ entity.subject }}</td>
-            </tr>
-            <tr>
-                <th>Sports</th>
-                <td>{{ entity.sports }}</td>
-            </tr>
-            <tr>
-                <th>Companytype</th>
-                <td>{{ entity.companyType }}</td>
-            </tr>
-            <tr>
-                <th>Country</th>
-                <td>{{ entity.country }}</td>
-            </tr>
-            <tr>
-                <th>Province</th>
-                <td>{{ entity.province }}</td>
-            </tr>
-            <tr>
-                <th>City</th>
-                <td>{{ entity.city }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ entity.description }}</td>
-            </tr>
-            <tr>
-                <th>Updatetime</th>
-                <td>{{ entity.updateTime|date('Y-m-d H:i:s') }}</td>
-            </tr>
-            <tr>
-                <th>Reporttime</th>
-                <td>{{ entity.reportTime|date('Y-m-d H:i:s') }}</td>
-            </tr>
-            <tr>
-                <th>Department</th>
-                <td>{{ entity.department }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <div class="show-theme">
+            <strong>需求主题：</strong>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('resource') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('resource_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+            <p>{{ entity.subject }}</p>
+        </div>
+        <div class="show-item">
+            <strong>运动项目：</strong>
+
+            <p>{{ entity.getSportsZh }}</p>
+        </div>
+        <div class="show-company">
+            <strong>单位性质：</strong>
+            <p>{{ entity.companyTypeZh }}</p>
+        </div>
+        <div class="show-area">
+            <strong>所属地区：</strong>
+
+            <p>
+                <span>{{ entity.country }}</span>，
+                <span>{{ entity.province }}</span>,
+                <span>{{ entity.city }}</span>
+            </p>
+        </div>
+        <div class="show-desc">
+            <strong>需求简述：</strong>
+
+            <p>
+                {{ entity.description }}
+            </p>
+        </div>
+        <div class="show-people">
+            <strong>联络人及部门：</strong>
+
+            <p><span>{{ entity.departmentZh }}</span> -
+                <span>{% if entity.contact %}{{ entity.contact.name }}{% endif %}</span></p>
+        </div>
+        <div class="demond-time">
+            <strong>反馈时间：</strong><br>
+
+            <p>{{ entity.reporttime|date('Y-m-d') }}</p>
+        </div>
+        <div class="demond-btn">
+
+            <a href="javascript:history.go(-1)" class="del">返回</a>
+
+        </div>
+    </div>
+
+
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('requirement') }}">
+                Back to the list
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('requirement_edit', { 'id': entity.id }) }}">
+                Edit
+            </a>
+        </li>
+        <li>{{ form(delete_form) }}</li>
+    </ul>
 {% endblock %}

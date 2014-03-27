@@ -22,14 +22,14 @@ class RequirementType extends AbstractType
                 'choices' => Requirement::$sportsZhArr,
                 //'required' => false,
                 'label' => '运动项目',
-                'empty_value' => '-运动项目-',
+                'empty_value' => '-请选择-',
                 'empty_data' => null
             ))
             ->add('companyType', 'choice', array(
                 'choices' => Requirement::$companyTypeZhArr,
                 //  'required' => false,
                 'label' => '单位性质',
-                'empty_value' => '-单位性质-',
+                'empty_value' => '-请选择-',
                 'empty_data' => ''
             ))
             ->add('country', 'hidden')
@@ -41,8 +41,8 @@ class RequirementType extends AbstractType
             ->add('department', 'choice', array(
                 'choices' => Requirement::$departmentZhArr,
                 // 'required' => false,
-                'label' => '单位性质',
-                'empty_value' => '-单位性质-',
+                'label' => '部门',
+                'empty_value' => '-请选择-',
                 'empty_data' => 'ss'
             ))
             ->add('contact', 'entity', array(

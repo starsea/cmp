@@ -64,4 +64,9 @@ class CommonController extends Controller
         return $form->createView();
     }
 
+    public function navigationAction()
+    {
+
+    }
+
 }

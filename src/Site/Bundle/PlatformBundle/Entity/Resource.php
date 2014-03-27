@@ -384,4 +384,51 @@ class Resource
     {
         return $this->contact;
     }
+
+    /**
+     * Get sports for chinese
+     *
+     * @return string
+     */
+    public function getSportsZh()
+    {
+        $sports = Requirement::$sportsZhArr;
+        if ($this->sports) {
+            return $sports[$this->sports];
+        } else {
+            return '';
+        }
+    }
+
+
+    /**
+     * Get getDepartmentZh
+     *
+     * @return string
+     */
+    public function getDepartmentZh()
+    {
+        $department = Requirement::$departmentZhArr;
+        if ($this->department) {
+            return $department[$this->department];
+        } else {
+            return '';
+        }
+    }
+
+
+    /**
+     * Get getCompanyTypeZh
+     *
+     * @return string
+     */
+    public function getCompanyTypeZh()
+    {
+        $arr = Requirement::$companyTypeZhArr;
+        if ($this->companyType) {
+            return $arr[$this->companyType];
+        } else {
+            return '';
+        }
+    }
 }

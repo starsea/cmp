@@ -1,59 +1,121 @@
-{% extends '::base.html.twig' %}
+{% extends 'SitePlatformBundle::layout.html.twig' %}
 
-{% block body -%}
-    <h1>Resource list</h1>
+{% block title %}虎扑协作平台{% endblock %}
 
-    <table class="records_list">
-        <thead>
+{% block content %}
+
+    <div class="demand-con" xmlns="http://www.w3.org/1999/html">
+        <div class="searchBar">
+            <a href="{{ path('resource_new') }}" class="addDemand">+ 新增资源</a>
+
+            <form action="{{ path('resource') }}" method="get" {{ form_enctype(form) }}>
+
+                {{ form_errors(form.sports) }}
+                {{ form_widget(form.sports , {'attr': {'class': 'item'} }) }}
+
+                {{ form_errors(form.updateTimeMin) }}
+                {{ form_widget(form.updateTimeMin , {'attr': {'class': 'date'} }) }}
+
+                {{ form_errors(form.updateTimeMax) }}
+                {{ form_widget(form.updateTimeMax , {'attr': {'class': 'date'} }) }}
+
+
+                {{ form_errors(form.country) }}
+                {{ form_widget(form.country , {'attr': {'class': 'liandong'} }) }}
+
+                {{ form_errors(form.province) }}
+                {{ form_widget(form.province, {'attr': {'class': 'liandong'} }) }}
+
+
+                {{ form_errors(form.city) }}
+                {{ form_widget(form.city, {'attr': {'class': 'liandong'} }) }}
+
+                {{ form_widget(form.keywords,{'attr': {'class': 'keywords'} }) }}
+
+                <input class="searchBtn" type="submit" value="搜索"/>
+            </form>
+
+        </div>
+        <table border='0' cellspacing='0' cellpadding='0' width="100%" class="demand-table">
             <tr>
-                <th>Id</th>
-                <th>Subject</th>
-                <th>Sports</th>
-                <th>Companytype</th>
-                <th>Country</th>
-                <th>Province</th>
-                <th>City</th>
-                <th>Description</th>
-                <th>Updatetime</th>
-                <th>Reporttime</th>
-                <th>Department</th>
-                <th>Actions</th>
+                <th width="10%">更新时间</th>
+                <th width="10%">运动项目</th>
+                <th width="15%">单位性质</th>
+                <th width="10%">所属地区</th>
+                <th width="25%">需求主题（点击查看详细）</th>
+                <th width="11%">内部联络人</th>
+                <th width="8%">反馈时间</th>
+                <th width="11%">...</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('resource_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.subject }}</td>
-                <td>{{ entity.sports }}</td>
-                <td>{{ entity.companyType }}</td>
-                <td>{{ entity.country }}</td>
-                <td>{{ entity.province }}</td>
-                <td>{{ entity.city }}</td>
-                <td>{{ entity.description }}</td>
-                <td>{% if entity.updateTime %}{{ entity.updateTime|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if entity.reportTime %}{{ entity.reportTime|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ entity.department }}</td>
-                <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('resource_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('resource_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            {% for entity in entities %}
+                <tr>
+                    <td>{% if entity.updatetime %}{{ entity.updatetime|date('Y-m-d') }}{% endif %}</td>
+                    <td>{% if entity.sports %}{{ entity.getSportsZh }}{% endif %}</td>
+                    <td>{{ entity.companyTypeZh }}</td>
+                    <td>{{ entity.country }}</td>
+                    <td><a href="{{ path('resource_show', { 'id': entity.id }) }}">{{ entity.subject }}</a></td>
+                    <td>{% if entity.contact %}{{ entity.contact.name }}{% endif %}</td>
+                    <td>{% if entity.reporttime %}{{ entity.reporttime|date('Y-m-d') }}{% endif %}</td>
 
-        <ul>
-        <li>
-            <a href="{{ path('resource_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
-    {% endblock %}
+                    <td><a href="{{ path('resource_show', { 'id': entity.id }) }}">show</a>| <a
+                                href="{{ path('resource_edit', { 'id': entity.id }) }}">edit</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        <div class="pageWrap">
+            <a href="#" class="prev">上一页</a>
+            <a href="#" class="pages">1</a>
+            <a href="#" class="pages">2</a>
+            <a href="#" class="pages">3</a>
+            <a href="#" class="pages">4</a>
+            <a href="#" class="pages">5</a>
+            <a href="#" class="pages">6</a>
+            <a href="#" class="pages">7</a>
+            <a href="#" class="pages">8</a>
+            <a href="#" class="next">下一页</a>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+
+
+
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts
+    '@SitePlatformBundle/Resources/public/js/area.js' %}
+    <script src="{{ asset_url }}" type="text/javascript"></script>
+
+    <script>
+        _init_area('', '', '');
+        $('.keywords').focus(function () {
+            if ($(this).val() == '请输入关键字查询') {
+                $(this).val('');
+            }
+        }).blur(function () {
+            if ($(this).val() == '') {
+                $(this).val('请输入关键字查询');
+            }
+        })
+        $('.del').on('click', function () {
+            var show = showVideo.create({
+                wid: 400,
+                hei: 180
+            });
+            show.init();
+            $('.cover').bind('click', function () {
+                $(".popCon,.cover").remove();
+            })
+            $('.confirm').bind('click', function () {
+
+            })
+        })
+
+    </script>
+
+    {% endjavascripts %}
+{% endblock %}
