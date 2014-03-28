@@ -1,16 +1,80 @@
-{% extends '::base.html.twig' %}
+{% extends 'SitePlatformBundle::layout.html.twig' %}
 
-{% block body -%}
-    <h1>User edit</h1>
+{% block content %}
 
-    {{ form(edit_form) }}
+    <form class="addDemond" action="{{ edit_form.vars.action }}" method="POST">
+        <input type="hidden" name="_method" value="{{ edit_form.vars.method }}">
+        <h2>系统管理>用户管理>更新用户</h2>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('user') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+        <div class="demond-theme">
+            {{ form_errors(edit_form) }}
+            <strong>真实姓名：</strong><br>
+            {{ form_widget(edit_form.name, {'attr': {'class': 'theme'} }) }}
+        </div>
+        <div class="demond-item">
+            <strong>所属部门：</strong><br>
+            {{ form_widget(edit_form.department , {'attr': {'class': 'item'} }) }}
+        </div>
+        <div class="demond-company">
+            <strong>办公地点：</strong><br>
+            {{ form_widget(edit_form.location , {'attr': {'class': 'company'} }) }}
+        </div>
+        <div class="demond-theme">
+            <strong>虎扑账号：</strong><br>
+            {{ form_widget(edit_form.hupuAccount , {'attr': {'class': 'theme'} }) }}
+        </div>
+        <div class="demond-theme">
+            <strong>账号密码：</strong><br>
+            {{ form_widget(edit_form.password.first, {'attr': {'class': 'pwd'} }) }}
+        </div>
+        <div class="demond-theme">
+            <strong>确认密码：</strong><br>
+            {{ form_widget(edit_form.password.second, {'attr': {'class': 'confirm_pwd'} }) }}
+        </div>
+
+        <div class="demond-theme">
+            <strong>手机号：</strong><br>
+            {{ form_widget(edit_form.phone , {'attr': {'class': 'theme'} }) }}
+        </div>
+        <div class="demond-theme">
+            <strong>E-mail：</strong><br>
+            {{ form_widget(edit_form.email , {'attr': {'class': 'theme'} }) }}
+        </div>
+        <!-- <div class="demond-company">
+            <strong>隶属角色：</strong><br>
+            <select name="company" id="" class="company">
+                <option value="">管理员</option>
+                <option value="">普通用户</option>
+            </select>
+        </div> -->
+        {{ form_rest(edit_form) }}
+        <div class="demond-btn">
+            <input type="submit" class="add" value="更新">
+            <a href="javascript:history.go(-1)" class="del">返回</a>
+
+        </div>
+    </form>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        //判断两次密码输入是否一致
+        $('.add').click(function () {
+            var val1 = $('.pwd').val();
+            var val2 = $('.confirm_pwd').val();
+//            if (val1 == '' || val2 == '') {
+//                alert('请输入两次密码');
+//                return false;
+//
+//            }
+//            if (val1 != val2) {
+//                alert('两次输入的密码不正确');
+//                return false;
+//            }
+
+        })
+    </script>
+
 {% endblock %}
