@@ -43,7 +43,7 @@ class ResourceType extends AbstractType
                 // 'required' => false,
                 'label' => '部门',
                 'empty_value' => '-请选择-',
-                'empty_data' => 'ss'
+                'empty_data' => ''
             ))
             ->add('contact', 'entity', array(
                 'class' => 'SitePlatformBundle:User',

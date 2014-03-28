@@ -3,7 +3,8 @@
 namespace Site\Bundle\PlatformBundle\lib;
 
 
-class MyConst {
+class MyConst
+{
 
     const SPORTS_BASKETBALL = 'basketball';
     const SPORTS_FOOTBALL = 'football';
@@ -40,7 +41,6 @@ class MyConst {
     /* const end */
 
 
-
     /*const */
     const DEPARTMENT_EVENTS = 'EVENTS';
     const DEPARTMENT_TECHNOLOGY = 'TECHNOLOGY';
@@ -54,5 +54,11 @@ class MyConst {
         self::DEPARTMENT_MARKET => '营销中心',
         self::DEPARTMENT_OTHER => '其他',
 
+    );
+
+    public static $officeLocationZhArr = array(
+        'shanghai' => '上海',
+        'beijing' => '北京',
+        'shenzhen' => '深圳',
     );
 } 

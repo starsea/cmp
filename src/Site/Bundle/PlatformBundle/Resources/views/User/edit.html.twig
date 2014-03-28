@@ -4,6 +4,7 @@
 
     <form class="addDemond" action="{{ edit_form.vars.action }}" method="POST">
         <input type="hidden" name="_method" value="{{ edit_form.vars.method }}">
+
         <h2>系统管理>用户管理>更新用户</h2>
 
         <div class="demond-theme">
@@ -24,11 +25,11 @@
             {{ form_widget(edit_form.hupuAccount , {'attr': {'class': 'theme'} }) }}
         </div>
         <div class="demond-theme">
-            <strong>账号密码：</strong><br>
+            <strong>账号密码：(不修改留空)</strong><br>
             {{ form_widget(edit_form.password.first, {'attr': {'class': 'pwd'} }) }}
         </div>
         <div class="demond-theme">
-            <strong>确认密码：</strong><br>
+            <strong>确认密码：(不修改留空)</strong><br>
             {{ form_widget(edit_form.password.second, {'attr': {'class': 'confirm_pwd'} }) }}
         </div>
 
@@ -50,7 +51,7 @@
         {{ form_rest(edit_form) }}
         <div class="demond-btn">
             <input type="submit" class="add" value="更新">
-            <a href="javascript:history.go(-1)" class="del">返回</a>
+            <a href="{{ path('user') }}" class="del">返回</a>
 
         </div>
     </form>
@@ -69,10 +70,10 @@
 //                return false;
 //
 //            }
-//            if (val1 != val2) {
-//                alert('两次输入的密码不正确');
-//                return false;
-//            }
+            if (val1 != val2) {
+                alert('两次输入的密码不正确');
+                return false;
+            }
 
         })
     </script>

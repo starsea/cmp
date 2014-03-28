@@ -1,44 +1,50 @@
-{% extends '::base.html.twig' %}
+{% extends 'SitePlatformBundle::layout.html.twig' %}
 
-{% block body -%}
-    <h1>User</h1>
+{% block title %}虎扑协作平台{% endblock %}
 
-    <table class="record_properties">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ entity.name }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ entity.email }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ entity.password }}</td>
-            </tr>
-            <tr>
-                <th>Createdat</th>
-                <td>{{ entity.createdAt|date('Y-m-d H:i:s') }}</td>
-            </tr>
-        </tbody>
-    </table>
+{% block content %}
+    <div class="addDemond">
+        <h2>系统管理>查看用户</h2>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('user') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('user_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+        <div class="show-theme">
+            <strong>真实姓名：</strong>
+
+            <p>{{ entity.name }}</p>
+        </div>
+        <div class="show-item">
+            <strong>所属部门：</strong>
+
+            <p><{{ entity.department }}/p>
+        </div>
+        <div class="show-company">
+            <strong>办公地点：</strong>
+
+            <p>{{ entity.location }}</p>
+        </div>
+        <div class="show-area">
+            <strong>虎扑账号：</strong>
+
+            <p>
+                {{ entity.hupuAccount }}
+            </p>
+        </div>
+
+        <div class="show-people">
+            <strong>手机号：</strong>
+
+            <p>{{ entity.phone }}</p>
+        </div>
+        <div class="show-people">
+            <strong>E-mail：</strong>
+
+            <p>{{ entity.email }}</p>
+        </div>
+
+        <div class="demond-btn">
+
+            <a href="javascript:history.go(-1)" class="del">返回</a>
+
+        </div>
+    </div>
+
 {% endblock %}
