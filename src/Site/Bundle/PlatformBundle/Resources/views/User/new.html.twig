@@ -3,77 +3,79 @@
 {% block content %}
 
     <form class="addDemond" action="{{ form.vars.action }}" method="POST">
-        <h2>
-            <a href="{{ path('resource') }}">资源管理</a> >查看资源
-        </h2>
+        <input type="hidden" name="_method" value="{{ form.vars.method }}">
+
+        <h2>系统管理><a href="{{ path('user') }}">用户管理</a>>>更新用户</h2>
 
         <div class="demond-theme">
-            <strong>BD资源名称：</strong><br>
-            {{ form_widget(form.subject , {'attr': {'class': 'theme'} }) }}
+            {{ form_errors(form) }}
+            <strong>真实姓名：</strong><br>
+            {{ form_widget(form.name, {'attr': {'class': 'theme'} }) }}
         </div>
         <div class="demond-item">
-            <strong>运动项目：</strong><br>
-            {{ form_widget(form.sports , {'attr': {'class': 'item'} }) }}
+            <strong>所属部门：</strong><br>
+            {{ form_widget(form.department , {'attr': {'class': 'item'} }) }}
         </div>
         <div class="demond-company">
-            <strong>单位性质：</strong><br>
-            {{ form_widget(form.companyType) }}
+            <strong>办公地点：</strong><br>
+            {{ form_widget(form.location , {'attr': {'class': 'company'} }) }}
         </div>
-        <div class="selWrap">
-            <div class="sel1">
-                <strong>国家/地区：</strong><br>
-                <select name="country" id="country" class="liandong"></select>
-            </div>
-            <div class="sel2">
-                <strong>省/州：</strong><br>
-                <select name="province" id="province" class="liandong"></select>
-            </div>
-            <div class="sel3">
-                <strong>市：</strong><br>
-                <select name="city" id="city" class="liandong"></select>
-            </div>
+        <div class="demond-theme">
+            <strong>虎扑账号：</strong><br>
+            {{ form_widget(form.hupuAccount , {'attr': {'class': 'theme'} }) }}
         </div>
-        <div class="demond-desc">
-            <strong>BD资源简述：</strong><br>
-            {{ form_widget(form.description) }}
+        <div class="demond-theme">
+            <strong>账号密码：(不修改留空)</strong><br>
+            {{ form_widget(form.password.first, {'attr': {'class': 'pwd'} }) }}
         </div>
-        <div class="selWrap2">
-            <div class="sel4">
-                <strong>联络人：</strong><br>
-                {{ form_widget(form.contact , {'attr': {'class': 'liandong'} }) }}
-            </div>
-            <div class="sel5">
-                <strong>部门：</strong><br>
-                {{ form_widget(form.department , {'attr': {'class': 'liandong'} }) }}
-            </div>
-        </div>
-        <div class="demond-time">
-            <strong>反馈时间：</strong>
-            <br/>
-            {{ form_widget(form.reportTime , {'attr': {'class': 'Wdate'} }) }}
+        <div class="demond-theme">
+            <strong>确认密码：(不修改留空)</strong><br>
+            {{ form_widget(form.password.second, {'attr': {'class': 'confirm_pwd'} }) }}
         </div>
 
+        <div class="demond-theme">
+            <strong>手机号：</strong><br>
+            {{ form_widget(form.phone , {'attr': {'class': 'theme'} }) }}
+        </div>
+        <div class="demond-theme">
+            <strong>E-mail：</strong><br>
+            {{ form_widget(form.email , {'attr': {'class': 'theme'} }) }}
+        </div>
+        <!-- <div class="demond-company">
+            <strong>隶属角色：</strong><br>
+            <select name="company" id="" class="company">
+                <option value="">管理员</option>
+                <option value="">普通用户</option>
+            </select>
+        </div> -->
         {{ form_rest(form) }}
         <div class="demond-btn">
-            <input type="submit" class="add" value="创建">
-            <a href="{{ path('requirement') }}" class="del">
-                返回
-            </a>
+            <input type="submit" class="add" value="更新">
+            <a href="{{ path('user') }}" class="del">返回</a>
 
         </div>
     </form>
 
-
 {% endblock %}
-
 
 {% block javascripts %}
     {{ parent() }}
-
     <script>
+        //判断两次密码输入是否一致
+        $('.add').click(function () {
+            var val1 = $('.pwd').val();
+            var val2 = $('.confirm_pwd').val();
+            if (val1 == '' || val2 == '') {
+                alert('请输入两次密码');
+                return false;
 
+            }
+            if (val1 != val2) {
+                alert('两次输入的密码不正确');
+                return false;
+            }
 
+        })
     </script>
-
 
 {% endblock %}
