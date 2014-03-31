@@ -27,6 +27,7 @@ class RequirementController extends Controller
      */
     public function indexAction(Request $request)
     {
+  //      var_dump($this->get('security.context')->getToken()->getUser());
         $em = $this->getDoctrine()->getManager();
 
         $defaultData = array('keywords' => '请输入关键字查询');

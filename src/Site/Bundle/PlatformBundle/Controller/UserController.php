@@ -192,13 +192,26 @@ class UserController extends Controller
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
 
+
+//        $factory = $this->get('security.encoder_factory');
+//        $encoder = $factory->getEncoder($entity);
+
         if ($editForm->isValid()) {
 
             $newPassWord = $editForm->get('password')->getData();
-            if ($newPassWord === md5('')) {
+
+
+            if (empty($newPassWord)) {
                 $entity->setPassword($originPassWord);
             } else {
 
+                $factory = $this->get('security.encoder_factory');
+                $user = new User();
+                $encoder = $factory->getEncoder($user);
+                $password = $encoder->encodePassword($newPassWord, $user->getSalt());
+//var_dump($password);exit;
+
+                $entity->setPassword($password);
             }
 
             $em->flush();

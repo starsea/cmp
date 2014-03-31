@@ -1,0 +1,48 @@
+{% extends 'SitePlatformBundle::layout.html.twig' %}
+{% block title %}虎扑协作平台首页{% endblock %}
+
+
+{% block body %}
+
+
+<div class="wrap">
+    <div class="loginForm">
+        <a class="logo">
+
+        </a>
+
+        <div class="form">
+            <h2><em>虎扑内部协作平台 v 0.1</em><span>登录</span></h2>
+
+            <div class="loginWrap">
+
+                <form action="{{ path("login_check") }}" method="post" id="login">
+                    <div class="username">
+                        <span>用户名：</span><br>
+                        <input type="text" id="username" name="_username" value="{{ last_username }}" class="uname"/>
+                    </div>
+                    <div class="userpwd">
+                        <span>密码：</span><br>
+                        <input type="password" id="password" name="_password" class="upwd-ipt"/>
+                    </div>
+                    <input type="submit" class="submit" value="登录">
+                </form>
+
+                {% if error %}
+                    <div class="error" style="margin: 0 auto;width: 200px">用户名or密码错误</div>
+                {% endif %}
+
+                <div class="attention">
+                    本系统为第一期版本，仅为各中心人员提供数据管理功能，不涉及工作流相关功能，请各位知晓！！
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+{% set code = code(_self) %}
