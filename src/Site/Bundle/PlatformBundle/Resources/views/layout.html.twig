@@ -2,23 +2,23 @@
 
 {% block title %}虎扑协作平台{% endblock %}
 
-{% set controller = app.request.attributes.get('_template').get('controller')|lower %}
 {% block body %}
+    {% set controller =  app.request.attributes.get('_template').get('controller')  %}
     <div class="wrap">
         <div class="head-con">
             <div class="head-conLogo"><a href="#"></a><span>内部协作平台</span></div>
             <ul>
-                <li {% if controller == 'recent' %}class="cur"{% endif %}><a href="{{ path('recent') }}">最新更新</a></li>
-                <li {% if controller == 'requirement' %}class="cur"{% endif %}><a href="{{ path('requirement') }}">需求管理</a></li>
-                <li {% if controller == 'resource' %}class="cur"{% endif %}><a href="{{ path('resource') }}">资源管理</a></li>
-                <li><a href="#">系统管理</a></li>
+                <li {% if controller == 'Recent' %}class="cur"{% endif %}><a href="{{ path('recent') }}">最新更新</a></li>
+                <li {% if controller == 'Requirement' %}class="cur"{% endif %}><a href="{{ path('requirement') }}">需求管理</a></li>
+                <li {% if controller == 'Resource' %}class="cur"{% endif %}><a href="{{ path('resource') }}">资源管理</a></li>
+                <li {% if controller == 'User' %}class="cur"{% endif %}><a href="{{ path('user') }}">系统管理</a></li>
             </ul>
             <div class="user-info">
 				<span>
 					用户名：
-					<a href="#">mr.tylerwang</a>
+					<a href="#">{{ app.user.username }}</a>
 				</span>
-                <a href="#">【退出】</a>
+                <a href="{{ path('logout') }}">【退出】</a>
             </div>
         </div>
 
