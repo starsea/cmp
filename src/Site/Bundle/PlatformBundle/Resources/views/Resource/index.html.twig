@@ -55,7 +55,7 @@
                     <td>{% if entity.sports %}{{ entity.getSportsZh }}{% endif %}</td>
                     <td>{{ entity.companyTypeZh }}</td>
                     <td>{{ entity.country }}</td>
-                    <td>关系人？</td>
+                    <td>{{ entity.rank }}</td>
                     <td>{% if entity.contact %}{{ entity.contact.name }}{% endif %}</td>
                     <td><a href="{{ path('resource_show', { 'id': entity.id }) }}" target="_blank" >show</a>| <a
                                 href="{{ path('resource_edit', { 'id': entity.id }) }}">edit</a></td>

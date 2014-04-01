@@ -36,6 +36,7 @@ class ResourceType extends AbstractType
             ->add('province', 'hidden')
             ->add('city', 'hidden')
             ->add('description')
+            ->add('rank')
             // ->add('updateTime')
             ->add('reportTime')
             ->add('department', 'choice', array(

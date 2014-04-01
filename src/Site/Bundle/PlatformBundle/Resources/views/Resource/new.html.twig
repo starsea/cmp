@@ -37,6 +37,10 @@
             <strong>BD资源简述：</strong><br>
             {{ form_widget(form.description) }}
         </div>
+        <div class="res-relation">
+            <strong>关系人级别：</strong><br>
+            {{ form_widget(edit_form.rank , {'attr': {'class': 'relation'} }) }}
+        </div>
         <div class="selWrap2">
             <div class="sel4">
                 <strong>联络人：</strong><br>

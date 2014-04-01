@@ -37,7 +37,11 @@
         </div>
         <div class="demond-desc">
             <strong>BD需求简述：</strong><br>
-            {{ form_widget(edit_form.description) }}
+            {{ form_widget(edit_form.description , {'attr': {'style': 'width:300px ; height:120px' } }) }}
+        </div>
+        <div class="res-relation">
+            <strong>关系人级别：</strong><br>
+            {{ form_widget(edit_form.rank , {'attr': {'class': 'relation'} }) }}
         </div>
         <div class="selWrap2">
             <div class="sel4">
