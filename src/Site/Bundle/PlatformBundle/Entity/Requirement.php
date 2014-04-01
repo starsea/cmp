@@ -149,7 +149,13 @@ class Requirement
      */
     public function getSubject()
     {
+
+        if (!empty($this->subject) && (mb_strlen($this->subject, 'utf-8') > 15)) {
+            return mb_strcut($this->subject, 0, 40, 'utf-8') . '...';
+        }
+
         return $this->subject;
+
     }
 
     /**
@@ -174,7 +180,6 @@ class Requirement
     {
         return $this->sports;
     }
-
 
 
     /**
@@ -323,7 +328,7 @@ class Requirement
      */
     public function getSportsZh()
     {
-        $sports =  MyConst::$sportsZhArr;
+        $sports = MyConst::$sportsZhArr;
         if ($this->sports) {
             return $sports[$this->sports];
         } else {
@@ -425,7 +430,7 @@ class Requirement
     /**
      * Get companyType
      *
-     * @return string 
+     * @return string
      */
     public function getCompanyType()
     {

@@ -120,13 +120,11 @@ class Resource
      */
     private $department;
 
- 
-
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -149,11 +147,17 @@ class Resource
     /**
      * Get subject
      *
-     * @return string 
+     * @return string
      */
     public function getSubject()
     {
+
+        if (!empty($this->subject) && (mb_strlen($this->subject, 'utf-8') > 15)) {
+            return mb_strcut($this->subject, 0, 40, 'utf-8') . '...';
+        }
+
         return $this->subject;
+
     }
 
     /**
@@ -172,7 +176,7 @@ class Resource
     /**
      * Get sports
      *
-     * @return string 
+     * @return string
      */
     public function getSports()
     {
@@ -195,7 +199,7 @@ class Resource
     /**
      * Get companyType
      *
-     * @return string 
+     * @return string
      */
     public function getCompanyType()
     {
@@ -218,7 +222,7 @@ class Resource
     /**
      * Get country
      *
-     * @return string 
+     * @return string
      */
     public function getCountry()
     {
@@ -241,7 +245,7 @@ class Resource
     /**
      * Get province
      *
-     * @return string 
+     * @return string
      */
     public function getProvince()
     {
@@ -264,7 +268,7 @@ class Resource
     /**
      * Get city
      *
-     * @return string 
+     * @return string
      */
     public function getCity()
     {
@@ -287,7 +291,7 @@ class Resource
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -310,7 +314,7 @@ class Resource
     /**
      * Get updateTime
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdateTime()
     {
@@ -333,7 +337,7 @@ class Resource
     /**
      * Get reportTime
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getReportTime()
     {
@@ -356,7 +360,7 @@ class Resource
     /**
      * Get department
      *
-     * @return string 
+     * @return string
      */
     public function getDepartment()
     {
@@ -379,7 +383,7 @@ class Resource
     /**
      * Get contact
      *
-     * @return \Site\Bundle\PlatformBundle\Entity\User 
+     * @return \Site\Bundle\PlatformBundle\Entity\User
      */
     public function getContact()
     {
