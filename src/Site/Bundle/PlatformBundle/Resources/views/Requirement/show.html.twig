@@ -49,23 +49,8 @@
         </div>
         <div class="demond-btn">
 
-            <a href="javascript:history.go(-1)" class="del">返回</a>
+            <a href="{{ path('requirement') }}" class="del">返回</a>
 
         </div>
     </div>
-
-
-    <ul class="record_actions">
-        <li>
-            <a href="{{ path('requirement') }}">
-                Back to the list
-            </a>
-        </li>
-        <li>
-            <a href="{{ path('requirement_edit', { 'id': entity.id }) }}">
-                Edit
-            </a>
-        </li>
-        <li>{{ form(delete_form) }}</li>
-    </ul>
 {% endblock %}
