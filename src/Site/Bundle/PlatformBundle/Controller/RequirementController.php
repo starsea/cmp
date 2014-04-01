@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Site\Bundle\PlatformBundle\Entity\Requirement;
 use Site\Bundle\PlatformBundle\Form\RequirementType;
+use Site\Bundle\PlatformBundle\lib\Page;
 
 /**
  * Requirement controller.
@@ -25,7 +26,7 @@ class RequirementController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function indexAction(Request $request)
+    public function indexAction(Request $request,$page)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -37,21 +38,48 @@ class RequirementController extends Controller
 
         $formData = $request->query->get('form');
 
+
+        /*参数*/
+        $count = count($em->getRepository('SitePlatformBundle:Requirement')->findAll());
+        $limit = 10;
+        $offset = ($page-1) * $limit;
+
         if (!$formData) {
 
-            $entities = $em->getRepository('SitePlatformBundle:Requirement')->findAll();
+            $entities = $em->getRepository('SitePlatformBundle:Requirement')->findBy(
+                array(),
+                array('updateTime' => 'DESC'),
+                $limit,
+                $offset
+            );
 
         } else {
 
             $params = $this->filterSearchData($formData);
-           // var_dump($params);
+            // var_dump($params);
 
             $entities = $em->getRepository('SitePlatformBundle:Requirement')->search($params);
         };
 
+        $config = array(
+            'total_rows' => $count,
+            'per_page' => $limit,
+            'num_links' => 3,
+            'curr_page' => $page,
+            'url_rule' => "#(/requirement/p/)\d+/?#iU",
+            'page_container_tag_style'=>'pageWrap',
+            'prev_tag_style'=>'prev',
+            'next_tag_style'=>'next',
+        );
+
+
+        $paging = new Page($config);
+        $pageHtml = $paging->display();
+
         return array(
             'entities' => $entities,
             'form' => $form,
+            'pageHtml' => $pageHtml
         );
 
     }

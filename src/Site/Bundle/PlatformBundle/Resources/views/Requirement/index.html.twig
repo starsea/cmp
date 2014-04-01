@@ -63,18 +63,7 @@
             {% endfor %}
         </table>
 
-        <div class="pageWrap">
-            <a href="#" class="prev">上一页</a>
-            <a href="#" class="pages">1</a>
-            <a href="#" class="pages">2</a>
-            <a href="#" class="pages">3</a>
-            <a href="#" class="pages">4</a>
-            <a href="#" class="pages">5</a>
-            <a href="#" class="pages">6</a>
-            <a href="#" class="pages">7</a>
-            <a href="#" class="pages">8</a>
-            <a href="#" class="next">下一页</a>
-        </div>
+        {{ pageHtml | raw }}
 
     </div>
 
