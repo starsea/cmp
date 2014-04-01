@@ -396,18 +396,6 @@ class User implements UserInterface, \Serializable
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      * Set username
      *
@@ -429,5 +417,38 @@ class User implements UserInterface, \Serializable
     public function getName()
     {
         return $this->username;
+    }
+
+    /**
+     * Add resource
+     *
+     * @param \Site\Bundle\PlatformBundle\Entity\Resource $resource
+     * @return User
+     */
+    public function addResource(\Site\Bundle\PlatformBundle\Entity\Resource $resource)
+    {
+        $this->resource[] = $resource;
+
+        return $this;
+    }
+
+    /**
+     * Remove resource
+     *
+     * @param \Site\Bundle\PlatformBundle\Entity\Resource $resource
+     */
+    public function removeResource(\Site\Bundle\PlatformBundle\Entity\Resource $resource)
+    {
+        $this->resource->removeElement($resource);
+    }
+
+    /**
+     * Get resource
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getResource()
+    {
+        return $this->resource;
     }
 }
