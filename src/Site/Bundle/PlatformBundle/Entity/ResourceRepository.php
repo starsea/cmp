@@ -31,9 +31,9 @@ class ResourceRepository extends EntityRepository
             if (in_array($field, array('updateTimeMin', 'updateTimeMax'))) {
 
                 if ($field == 'updateTimeMin')
-                    $operator = '>';
+                    $operator = '>=';
                 else
-                    $operator = '<';
+                    $operator = '<=';
 
                 $qb->andWhere('i.' . 'updateTime' . " {$operator} " . ':' . $field)
                     ->setParameter($field, $value);
@@ -48,6 +48,9 @@ class ResourceRepository extends EntityRepository
             $qb->andWhere($qb->expr()->eq('i.' . $field, ':' . $field))
                 ->setParameter($field, $value);
         }
+
+
+        $qb->addOrderBy('i.updateTime','DESC');
 
         //var_dump( $qb->getQuery()->getParameters());
         return $qb->getQuery()->getResult();

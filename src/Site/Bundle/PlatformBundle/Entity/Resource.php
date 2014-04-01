@@ -152,6 +152,18 @@ class Resource
     public function getSubject()
     {
 
+        return $this->subject;
+
+    }
+
+    /**
+     * Get subject
+     *
+     * @return string
+     */
+    public function getFormatSubject()
+    {
+
         if (!empty($this->subject) && (mb_strlen($this->subject, 'utf-8') > 15)) {
             return mb_strcut($this->subject, 0, 40, 'utf-8') . '...';
         }

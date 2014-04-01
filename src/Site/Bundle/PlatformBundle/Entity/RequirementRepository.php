@@ -32,9 +32,9 @@ class RequirementRepository extends EntityRepository
             if (in_array($field, array('updateTimeMin', 'updateTimeMax'))) {
 
                 if ($field == 'updateTimeMin')
-                    $operator = '>';
+                    $operator = '>=';
                 else
-                    $operator = '<';
+                    $operator = '<=';
 
                 $qb->andWhere('i.' . 'updateTime' . " {$operator} " . ':' . $field)
                     ->setParameter($field, $value);

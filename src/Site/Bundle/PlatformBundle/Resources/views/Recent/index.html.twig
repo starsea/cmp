@@ -13,7 +13,7 @@
             </tr>
             {% for entity in requirements %}
                 <tr>
-                    <td><a href="{{ path('requirement_show', { 'id': entity.id }) }}">{{ entity.subject }}</a></td>
+                    <td><a href="{{ path('requirement_show', { 'id': entity.id }) }}">{{ entity.getFormatSubject }}</a></td>
                     <td>{% if entity.contact %}{{ entity.contact.name }}{% endif %}</td>
                     <td>{% if entity.updateTime %}{{ entity.updateTime|date('Y-m-d') }}{% endif %}</td>
                 </tr>
@@ -32,7 +32,7 @@
             </tr>
             {% for entity in resources %}
                 <tr>
-                    <td><a href="{{ path('resource_show', { 'id': entity.id }) }}">{{ entity.subject }}</a></td>
+                    <td><a href="{{ path('resource_show', { 'id': entity.id }) }}">{{ entity.getFormatSubject }}</a></td>
                     <td>{% if entity.contact %}{{ entity.contact.name }}{% endif %}</td>
                     <td>{% if entity.updateTime %}{{ entity.updateTime|date('Y-m-d') }}{% endif %}</td>
                 </tr>
