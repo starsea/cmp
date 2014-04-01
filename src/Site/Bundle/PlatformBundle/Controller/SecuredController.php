@@ -18,7 +18,12 @@ class SecuredController extends Controller
      */
     public function loginAction(Request $request)
     {
-        var_dump($this->get('security.context')->getToken());
+//        var_dump($this->get('security.context')->getToken());
+//        $securityContext = $this->container->get('security.context');
+//        if( $securityContext->isGranted('IS_AUTHENTICATED_FULLY') ){
+//            var_dump(1);
+//            // authenticated REMEMBERED, FULLY will imply REMEMBERED (NON anonymous)
+//        }
         //var_dump($this->get('security.context'));
         if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
             $error = $request->attributes->get(SecurityContext::AUTHENTICATION_ERROR);
