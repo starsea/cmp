@@ -18,6 +18,7 @@
         </div>
         <div class="show-company">
             <strong>单位性质：</strong>
+
             <p>{{ entity.companyTypeZh }}</p>
         </div>
         <div class="show-area">
@@ -48,9 +49,12 @@
             <p>{{ entity.reporttime|date('Y-m-d') }}</p>
         </div>
         <div class="demond-btn">
-
+            <div>
+            {{ form(delete_form) }}
+            </div>
             <a href="{{ path('requirement') }}" class="del">返回</a>
 
         </div>
+
     </div>
 {% endblock %}

@@ -6,6 +6,7 @@ namespace Site\Bundle\PlatformBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Site\Bundle\PlatformBundle\lib\MyConst;
 
 /**
  * @ORM\Entity(repositoryClass="Site\Bundle\PlatformBundle\Entity\UserRepository")
@@ -450,5 +451,35 @@ class User implements UserInterface, \Serializable
     public function getResource()
     {
         return $this->resource;
+    }
+
+    /**
+     * Get getDepartmentZh
+     *
+     * @return string
+     */
+    public function getDepartmentZh()
+    {
+        $department = MyConst::$departmentZhArr;
+        if ($this->department) {
+            return $department[$this->department];
+        } else {
+            return '';
+        }
+    }
+
+    /**
+     * Get getLocationZh
+     *
+     * @return string
+     */
+    public function getLocationZh()
+    {
+        $arr = MyConst::$officeLocationZhArr;
+        if ($this->location) {
+            return $arr[$this->location];
+        } else {
+            return '';
+        }
     }
 }

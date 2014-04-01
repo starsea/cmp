@@ -48,7 +48,9 @@
             <p>{{ entity.reporttime|date('Y-m-d') }}</p>
         </div>
         <div class="demond-btn">
-
+            <div>
+                {{ form(delete_form) }}
+            </div>
             <a href="{{ path('resource') }}" class="del">返回</a>
 
         </div>

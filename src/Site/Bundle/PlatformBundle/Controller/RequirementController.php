@@ -187,7 +187,6 @@ class RequirementController extends Controller
         }
 
         $deleteForm = $this->createDeleteForm($id);
-
         return array(
             'entity' => $entity,
             'delete_form' => $deleteForm->createView(),
