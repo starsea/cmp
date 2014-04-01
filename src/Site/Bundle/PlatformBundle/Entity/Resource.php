@@ -89,7 +89,7 @@ class Resource
      *
      * //更新时间
      *
-     * @ORM\Column(name="update_time", type="date")
+     * @ORM\Column(name="update_time", type="datetime")
      */
     private $updateTime;
 
