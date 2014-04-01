@@ -21,7 +21,7 @@ class RequirementController extends Controller
     /**
      * Lists all Requirement entities.
      *
-     * @Route("/", name="requirement")
+     * @Route("/p/{page}/", name="requirement",defaults={"page" = 1},requirements={"page" = "\d*"})
      * @Method("GET")
      * @Template()
      */

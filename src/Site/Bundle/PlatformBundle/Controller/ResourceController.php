@@ -10,6 +10,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Site\Bundle\PlatformBundle\Entity\Resource;
 use Site\Bundle\PlatformBundle\Form\ResourceType;
 
+use Site\Bundle\PlatformBundle\lib\Page;
+
 /**
  * Resource controller.
  *
@@ -21,11 +23,11 @@ class ResourceController extends Controller
     /**
      * Lists all Resource entities.
      *
-     * @Route("/", name="resource")
+     * @Route("/p/{page}/", name="resource",defaults={"page" = 1},requirements={"page" = "\d*"})
      * @Method("GET")
      * @Template()
      */
-    public function indexAction(Request $request)
+    public function indexAction(Request $request, $page)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -37,9 +39,20 @@ class ResourceController extends Controller
 
         $formData = $request->query->get('form');
 
+
+        /*参数*/
+        $count = count($em->getRepository('SitePlatformBundle:Resource')->findAll());
+        $limit = 10;
+        $offset = ($page-1) * $limit;
+
         if (!$formData) {
 
-            $entities = $em->getRepository('SitePlatformBundle:Resource')->findAll();
+            $entities = $em->getRepository('SitePlatformBundle:Resource')->findBy(
+                array(),
+                array('updateTime' => 'DESC'),
+                $limit,
+                $offset
+            );
 
         } else {
 
@@ -49,9 +62,25 @@ class ResourceController extends Controller
             $entities = $em->getRepository('SitePlatformBundle:Resource')->search($params);
         };
 
+        $config = array(
+            'total_rows' => $count,
+            'per_page' => $limit,
+            'num_links' => 3,
+            'curr_page' => $page,
+            'url_rule' => "#(/resource/p/)\d+/?#iU",
+            'page_container_tag_style'=>'pageWrap',
+            'prev_tag_style'=>'prev',
+            'next_tag_style'=>'next',
+        );
+
+
+        $paging = new Page($config);
+        $pageHtml = $paging->display();
+
         return array(
             'entities' => $entities,
             'form' => $form,
+            'pageHtml' => $pageHtml
         );
 
     }
@@ -99,17 +128,17 @@ class ResourceController extends Controller
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         );
     }
 
     /**
-    * Creates a form to create a Resource entity.
-    *
-    * @param Resource $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to create a Resource entity.
+     *
+     * @param Resource $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createCreateForm(Resource $entity)
     {
         $form = $this->createForm(new ResourceType(), $entity, array(
@@ -117,7 +146,7 @@ class ResourceController extends Controller
             'method' => 'POST',
         ));
 
-       // $form->add('submit', 'submit', array('label' => 'Create'));
+        // $form->add('submit', 'submit', array('label' => 'Create'));
 
         return $form;
     }
@@ -132,11 +161,11 @@ class ResourceController extends Controller
     public function newAction()
     {
         $entity = new Resource();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         );
     }
 
@@ -160,7 +189,7 @@ class ResourceController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
+            'entity' => $entity,
             'delete_form' => $deleteForm->createView(),
         );
     }
@@ -186,19 +215,19 @@ class ResourceController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
 
     /**
-    * Creates a form to edit a Resource entity.
-    *
-    * @param Resource $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a Resource entity.
+     *
+     * @param Resource $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(Resource $entity)
     {
         $form = $this->createForm(new ResourceType(), $entity, array(
@@ -206,10 +235,11 @@ class ResourceController extends Controller
             'method' => 'PUT',
         ));
 
-      //  $form->add('submit', 'submit', array('label' => 'Update'));
+        //  $form->add('submit', 'submit', array('label' => 'Update'));
 
         return $form;
     }
+
     /**
      * Edits an existing Resource entity.
      *
@@ -238,11 +268,12 @@ class ResourceController extends Controller
         }
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
+
     /**
      * Deletes a Resource entity.
      *
@@ -282,7 +313,6 @@ class ResourceController extends Controller
             ->setAction($this->generateUrl('resource_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
-            ->getForm()
-        ;
+            ->getForm();
     }
 }
