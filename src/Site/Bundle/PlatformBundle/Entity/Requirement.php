@@ -106,7 +106,7 @@ class Requirement
     /**
      * @var object //联系人
      *
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="user")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="requirement")
      * @ORM\JoinColumn(name="contact_id", referencedColumnName="id")
      */
     private $contact;

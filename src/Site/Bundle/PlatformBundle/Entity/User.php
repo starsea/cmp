@@ -60,6 +60,11 @@ class User implements UserInterface, \Serializable
      */
     protected $requirement;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Resource", mappedBy="contact")
+     */
+    protected $resource;
+
 
     /**
      * @ORM\Column(type="string", length=255,name="department")

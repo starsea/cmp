@@ -107,7 +107,7 @@ class Resource
     /**
      * @var object //联系人
      *
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="user")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="resource")
      * @ORM\JoinColumn(name="contact_id", referencedColumnName="id")
      */
     private $contact;
