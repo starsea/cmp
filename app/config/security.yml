@@ -14,7 +14,7 @@ security:
 
     encoders:
         Site\Bundle\PlatformBundle\Entity\User:
-            algorithm: bcrypt
+            algorithm: sha1
 
     firewalls:
         dev:

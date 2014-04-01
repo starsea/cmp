@@ -16,7 +16,7 @@
             <div class="user-info">
 				<span>
 					用户名：
-					<a href="#">{{ app.user.username }}</a>
+					<a href="#">{% if app.user %}{{ app.user.username }}{% endif %}</a>
 				</span>
                 <a href="{{ path('logout') }}">【退出】</a>
             </div>
