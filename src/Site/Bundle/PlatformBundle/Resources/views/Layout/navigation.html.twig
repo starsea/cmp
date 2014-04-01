@@ -1,0 +1,8 @@
+{% set controller = app.request.attributes.get('_template')|lower %}
+{{ controller }}
+<ul>
+    <li {% if controller == 'recent' %}class="cur"{% endif %}><a href="{{ path('recent') }}">最新更新</a></li>
+    <li {% if controller == 'requirement' %}class="cur"{% endif %}><a href="{{ path('requirement') }}">需求管理</a></li>
+    <li {% if controller == 'resource' %}class="cur"{% endif %}><a href="{{ path('resource') }}">资源管理</a></li>
+    <li><a href="{{ path('user') }}">系统管理</a></li>
+</ul>
