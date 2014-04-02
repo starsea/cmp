@@ -38,13 +38,14 @@ class RequirementController extends Controller
 
         $formData = $request->query->get('form');
 
+        $params = $this->filterSearchData($formData);
 
         /*参数*/
         $count = count($em->getRepository('SitePlatformBundle:Requirement')->findAll());
         $limit = 10;
         $offset = ($page-1) * $limit;
 
-        if (!$formData) {
+        if (empty($params)) {
 
             $entities = $em->getRepository('SitePlatformBundle:Requirement')->findBy(
                 array(),
@@ -55,7 +56,6 @@ class RequirementController extends Controller
 
         } else {
 
-            $params = $this->filterSearchData($formData);
             // var_dump($params);
 
             $entities = $em->getRepository('SitePlatformBundle:Requirement')->search($params, $offset, $limit);
@@ -86,8 +86,12 @@ class RequirementController extends Controller
     }
 
     //过滤
-    protected function filterSearchData(Array $data)
+    protected function filterSearchData($data)
     {
+        if(empty($data)){
+            return array();
+        }
+
         $data = array_filter($data);
 
         if ($data['keywords'] == '请输入关键字查询') {
