@@ -60,6 +60,7 @@ class RequirementController extends Controller
 
             $entities = $em->getRepository('SitePlatformBundle:Requirement')->search($params, $offset, $limit);
             $count = count($entities);
+            $entities = array_slice($entities,$offset,$offset+$limit);
         };
 
         $config = array(

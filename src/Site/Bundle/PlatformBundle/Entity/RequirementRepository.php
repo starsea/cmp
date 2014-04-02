@@ -50,9 +50,9 @@ class RequirementRepository extends EntityRepository
                 ->setParameter($field, $value);
         }
 
-        $qb->addOrderBy('i.updateTime', 'DESC')
-            ->setMaxResults($limit)
-            ->setFirstResult($offset);
+        $qb->addOrderBy('i.updateTime', 'DESC');
+            //->setMaxResults($limit)
+            //->setFirstResult($offset);
 
         //var_dump( $qb->getQuery()->getParameters());
         return $qb->getQuery()->getResult();

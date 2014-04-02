@@ -62,6 +62,7 @@ class ResourceController extends Controller
 
             $entities = $em->getRepository('SitePlatformBundle:Resource')->search($params, $offset, $limit);
             $count = count($entities);
+            $entities = array_slice($entities,$offset,$offset+$limit);
         };
 
         $config = array(
