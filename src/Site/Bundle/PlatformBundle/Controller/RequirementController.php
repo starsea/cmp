@@ -255,7 +255,7 @@ class RequirementController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Requirement entity.');
         }
-
+        $entity->setUpdateTime(new \DateTime());
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
@@ -263,7 +263,8 @@ class RequirementController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('requirement_edit', array('id' => $id)));
+            //return $this->redirect($this->generateUrl('requirement_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('requirement_show', array('id' => $id)));
         }
 
         return array(

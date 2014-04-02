@@ -257,6 +257,7 @@ class ResourceController extends Controller
             throw $this->createNotFoundException('Unable to find Resource entity.');
         }
 
+        $entity->setUpdateTime(new \DateTime());
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
@@ -264,7 +265,8 @@ class ResourceController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('resource_edit', array('id' => $id)));
+            //return $this->redirect($this->generateUrl('resource_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('resource_show', array('id' => $id)));
         }
 
         return array(
