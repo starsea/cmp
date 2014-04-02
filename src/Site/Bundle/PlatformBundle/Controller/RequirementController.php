@@ -311,7 +311,7 @@ class RequirementController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('requirement_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => '删除'))
             ->getForm();
     }
 }

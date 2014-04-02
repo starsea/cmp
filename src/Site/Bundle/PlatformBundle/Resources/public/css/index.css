@@ -590,3 +590,16 @@ body {
   color: #FFF;
   background: #A41F24;
 }
+#form_submit{
+    display: inline-block;
+    width: 100px;
+    height: 38px;
+    margin: 5px 20px 10px 0;
+    text-align: center;
+    font: 600 16px/38px 'microsoft soft';
+    color: #FFF;
+    background: #A41F24;
+    border: none;
+    cursor: pointer;
+}
+.deleteForm{display: inline-block;}

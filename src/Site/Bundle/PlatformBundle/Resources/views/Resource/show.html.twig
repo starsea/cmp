@@ -48,12 +48,44 @@
             <p>{{ entity.reporttime|date('Y-m-d') }}</p>
         </div>
         <div class="demond-btn">
-            <div>
-                {{ form(delete_form) }}
-            </div>
+
+            <form class="deleteForm" action="{{ delete_form.vars.action }}" method="POST">
+                <input type="hidden" name="_method" value="{{ delete_form.vars.method }}">
+                {{ form_widget(delete_form.submit , {'attr': {'class': 'delete'} }) }}
+            </form>
             <a href="{{ path('resource') }}" class="del">返回</a>
 
         </div>
     </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts
+    '@SitePlatformBundle/Resources/public/js/video.js' %}
+    <script src="{{ asset_url }}" type="text/javascript"></script>
+
+    <script>
+        $('.delete button').on('click',function(){
+            var show = showVideo.create({
+                wid:400,
+                hei:180
+            });
+            show.init();
+
+            $('.cover').bind('click',function(){
+                $(".popCon,.cover").remove();
+            })
+            $('.confirm').bind('click',function(){
+                console.log(123);
+                $('.deleteForm').submit();
+            })
+            return false;
+        })
+
+
+    </script>
+    {% endjavascripts %}
 
 {% endblock %}
