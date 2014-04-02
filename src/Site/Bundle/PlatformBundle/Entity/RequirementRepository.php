@@ -14,7 +14,7 @@ class RequirementRepository extends EntityRepository
 {
 
     //需求搜索列表
-    public function search($data)
+    public function search($data, $offset = null, $limit = null)
     {
         $qb = $this->createQueryBuilder('i');
 
@@ -50,7 +50,9 @@ class RequirementRepository extends EntityRepository
                 ->setParameter($field, $value);
         }
 
-        $qb->addOrderBy('i.updateTime','DESC');
+        $qb->addOrderBy('i.updateTime', 'DESC')
+            ->setMaxResults($limit)
+            ->setFirstResult($offset);
 
         //var_dump( $qb->getQuery()->getParameters());
         return $qb->getQuery()->getResult();

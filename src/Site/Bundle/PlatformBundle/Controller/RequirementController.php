@@ -58,7 +58,8 @@ class RequirementController extends Controller
             $params = $this->filterSearchData($formData);
             // var_dump($params);
 
-            $entities = $em->getRepository('SitePlatformBundle:Requirement')->search($params);
+            $entities = $em->getRepository('SitePlatformBundle:Requirement')->search($params, $offset, $limit);
+            $count = count($entities);
         };
 
         $config = array(

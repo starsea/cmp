@@ -43,7 +43,7 @@ class ResourceController extends Controller
         /*参数*/
         $count = count($em->getRepository('SitePlatformBundle:Resource')->findAll());
         $limit = 10;
-        $offset = ($page-1) * $limit;
+        $offset = ($page - 1) * $limit;
 
         if (!$formData) {
 
@@ -59,7 +59,8 @@ class ResourceController extends Controller
             $params = $this->filterSearchData($formData);
             // var_dump($params);
 
-            $entities = $em->getRepository('SitePlatformBundle:Resource')->search($params);
+            $entities = $em->getRepository('SitePlatformBundle:Resource')->search($params, $offset, $limit);
+            $count = count($entities);
         };
 
         $config = array(
@@ -68,9 +69,9 @@ class ResourceController extends Controller
             'num_links' => 3,
             'curr_page' => $page,
             'url_rule' => "#(/resource/p/)\d+/?#iU",
-            'page_container_tag_style'=>'pageWrap',
-            'prev_tag_style'=>'prev',
-            'next_tag_style'=>'next',
+            'page_container_tag_style' => 'pageWrap',
+            'prev_tag_style' => 'prev',
+            'next_tag_style' => 'next',
         );
 
 
