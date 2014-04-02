@@ -51,7 +51,8 @@
 
             <form class="deleteForm" action="{{ delete_form.vars.action }}" method="POST">
                 <input type="hidden" name="_method" value="{{ delete_form.vars.method }}">
-                {{ form_widget(delete_form.submit , {'attr': {'class': 'delete'} }) }}
+                {{ form_widget(delete_form , {'attr': {'class': 'delete'} }) }}
+
             </form>
             <a href="{{ path('resource') }}" class="del">返回</a>
 
