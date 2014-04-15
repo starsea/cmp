@@ -306,7 +306,10 @@ class Requirement
      */
     public function getReportTime()
     {
-        return date_format($this->reportTime, 'Y-m-d');
+        if ($this->reportTime) {
+            return date_format($this->reportTime, 'Y-m-d');
+        }
+        return $this->reportTime;
     }
 
     /**
