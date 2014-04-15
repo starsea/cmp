@@ -347,7 +347,7 @@ class Resource
      */
     public function setReportTime($reportTime)
     {
-        $this->reportTime = $reportTime;
+        $this->reportTime = new \DateTime($reportTime);
 
         return $this;
     }
@@ -359,7 +359,7 @@ class Resource
      */
     public function getReportTime()
     {
-        return $this->reportTime;
+        return date_format($this->reportTime, 'Y-m-d');
     }
 
     /**

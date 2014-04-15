@@ -30,13 +30,13 @@ class CommonController extends Controller
                 'empty_value' => '-运动项目-',
                 'empty_data' => null
             ))
-            ->add('updateTimeMin', 'date', array(
-                'widget' => 'single_text',
+            ->add('updateTimeMin', 'text', array(
                 'required' => false,
+                'attr'=> array('onclick'=>'calendar.show(this);')
             ))
-            ->add('updateTimeMax', 'date', array(
-                'widget' => 'single_text',
+            ->add('updateTimeMax', 'text', array(
                 'required' => false,
+                'attr'=> array('onclick'=>'calendar.show(this);')
             ))
             ->add('country', 'choice', array(
                 'required' => false,

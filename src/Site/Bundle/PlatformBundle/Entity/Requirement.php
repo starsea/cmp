@@ -294,7 +294,7 @@ class Requirement
      */
     public function setReportTime($reportTime)
     {
-        $this->reportTime = $reportTime;
+        $this->reportTime = new \DateTime($reportTime);
 
         return $this;
     }
@@ -306,7 +306,7 @@ class Requirement
      */
     public function getReportTime()
     {
-        return $this->reportTime;
+        return date_format($this->reportTime, 'Y-m-d');
     }
 
     /**

@@ -38,7 +38,9 @@ class ResourceType extends AbstractType
             ->add('description')
             ->add('rank')
             // ->add('updateTime')
-            ->add('reportTime')
+            ->add('reportTime','text',array(
+                'attr'=> array('onclick'=>'calendar.show(this);')
+            ))
             ->add('department', 'choice', array(
                 'choices' => MyConst::$departmentZhArr,
                 // 'required' => false,

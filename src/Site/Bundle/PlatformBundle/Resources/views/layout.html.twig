@@ -30,8 +30,14 @@
 {% endblock %}
 
 {% block javascripts %}
-
     <script src="http://b1.hoopchina.com.cn/common/jquery-1.8.js"></script>
+
+    {% javascripts
+    '@SitePlatformBundle/Resources/public/js/calendar.js' %}
+    <script src="{{ asset_url }}" type="text/javascript"></script>
+
+    {% endjavascripts %}
+
 
 {% endblock %}
 
