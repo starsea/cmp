@@ -57,8 +57,7 @@
                     <td>{{ entity.country }}</td>
                     <td>{{ entity.rank }}</td>
                     <td>{% if entity.contact %}{{ entity.contact.name }}{% endif %}</td>
-                    <td><a href="{{ path('resource_show', { 'id': entity.id }) }}" target="_blank" >show</a>| <a
-                                href="{{ path('resource_edit', { 'id': entity.id }) }}">edit</a></td>
+                    <td><a href="{{ path('resource_edit', { 'id': entity.id }) }}">编辑</a></td>
                 </tr>
             {% endfor %}
         </table>

@@ -35,7 +35,7 @@ class Resource
     /**
      * @var string //资源主题
      *
-     * @ORM\Column(name="subject", type="string", length=255)
+     * @ORM\Column(name="subject", type="string", length=255 ,nullable=true)
      */
     private $subject;
 
@@ -359,7 +359,10 @@ class Resource
      */
     public function getReportTime()
     {
-        return date_format($this->reportTime, 'Y-m-d');
+        if($this->reportTime){
+            return date_format($this->reportTime, 'Y-m-d');
+        }
+        return $this->reportTime;
     }
 
     /**

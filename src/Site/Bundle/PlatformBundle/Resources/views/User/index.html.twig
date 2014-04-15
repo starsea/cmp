@@ -6,8 +6,9 @@
         <tr>
             <th width="10%">ID</th>
             <th width="20%">姓名</th>
-            <th width="20%">Email</th>
-            <th width="25%">手机</th>
+            <th width="15%">Email</th>
+            <th width="20%">手机</th>
+            <th width="10%">部门</th>
             <th width="10%">创建日期</th>
             <th width="15%">编辑栏</th>
         </tr>
@@ -18,9 +19,10 @@
                 <td>{{ entity.username }}</td>
                 <td>{{ entity.email }}</td>
                 <td>{{ entity.phone }}</td>
+                <td>{{ entity.departmentZh }}</td>
                 <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d') }}{% endif %}</td>
-                <td><a href="{{ path('user_show', { 'id': entity.id }) }}">show</a>| <a
-                            href="{{ path('user_edit', { 'id': entity.id }) }}">edit</a></td>
+                <td><a href="{{ path('user_show', { 'id': entity.id }) }}">查看</a>| <a
+                            href="{{ path('user_edit', { 'id': entity.id }) }}">编辑</a></td>
             </tr>
         {% endfor %}
     </table>

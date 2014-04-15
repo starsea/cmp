@@ -61,15 +61,19 @@
 {% block javascripts %}
     {{ parent() }}
     <script>
+        function trim(str){ //删除左右两端的空格
+            return str.replace(/(^\s*)|(\s*$)/g, "");
+        }
+
         //判断两次密码输入是否一致
         $('.add').click(function () {
-            var val1 = $('.pwd').val();
-            var val2 = $('.confirm_pwd').val();
-//            if (val1 == '' || val2 == '') {
-//                alert('请输入两次密码');
-//                return false;
-//
-//            }
+            var val1 = trim($('.pwd').val());
+            var val2 = trim($('.confirm_pwd').val());
+            if (val1 == '' || val2 == '') {
+                alert('密码不能为空');
+                return false;
+
+            }
             if (val1 != val2) {
                 alert('两次输入的密码不正确');
                 return false;

@@ -82,6 +82,13 @@
         _init_area('{{ edit_form.country.vars.data }}', '{{ edit_form.province.vars.data }}', '{{ edit_form.city.vars.data }}');
 
         $('.add').bind('click', function () {
+            country = $("#country").find("option:selected").val();
+            province = $("#province").find("option:selected").val();
+            city = $("#city").find("option:selected").val();
+            if (country == '国家' || province == '省份/周' || city == '城市') {
+                alert('请选择完整地区信息');
+                return false;
+            }
             $(country_id).val($("#country").find("option:selected").val());
             $(province_id).val($("#province").find("option:selected").val());
             $(city_id).val($("#city").find("option:selected").val());
