@@ -31,11 +31,13 @@ class RequirementRepository extends EntityRepository
             // 时间范围搜索
             if (in_array($field, array('updateTimeMin', 'updateTimeMax'))) {
 
-                if ($field == 'updateTimeMin')
+                if ($field == 'updateTimeMin') {
                     $operator = '>=';
-                else
-                    $operator = '<=';
+                } else {
+                    $value = date('Y-m-d', strtotime($value) + 86400 - 1);
 
+                    $operator = '<=';
+                }
                 $qb->andWhere('i.' . 'updateTime' . " {$operator} " . ':' . $field)
                     ->setParameter($field, $value);
                 continue;
