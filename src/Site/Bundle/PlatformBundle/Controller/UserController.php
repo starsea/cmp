@@ -132,6 +132,17 @@ class UserController extends Controller
      */
     public function editAction($id)
     {
+        $securityContext = $this->container->get('security.context');
+        $user = $securityContext->getToken()->getUser();
+
+        if(($user->getId() != $id ) && ($user->getUserName() !='admin')){
+            echo "<script type=\"text/javascript\">";
+            echo "alert(\"没有权限!\")";
+            echo "</script>";
+
+            return $this->redirect($this->generateUrl('user_show', array('id' => $id)));
+
+        }
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('SitePlatformBundle:User')->find($id);
