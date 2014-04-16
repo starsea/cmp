@@ -140,7 +140,7 @@ class UserController extends Controller
             echo "alert(\"没有权限!\")";
             echo "</script>";
 
-            return $this->redirect($this->generateUrl('user_show', array('id' => $id)));
+            return $this->redirect($this->generateUrl('user'));
 
         }
         $em = $this->getDoctrine()->getManager();
