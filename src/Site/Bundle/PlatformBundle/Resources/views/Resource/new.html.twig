@@ -60,7 +60,7 @@
         {{ form_rest(form) }}
         <div class="demond-btn">
             <input type="submit" class="add" value="创建">
-            <a href="{{ path('resource') }}" class="del">
+            <a href="{{ path('resource') }}" class="back">
                 返回
             </a>
 
@@ -86,11 +86,23 @@
         _init_area('{{ form.country.vars.data }}', '{{ form.province.vars.data }}', '{{ form.city.vars.data }}');
 
         $('.add').bind('click', function () {
+
             country = $("#country").find("option:selected").val();
             province = $("#province").find("option:selected").val();
             city = $("#city").find("option:selected").val();
-            if (country == '国家' || province == '省份/周' || city == '城市') {
-                alert('请选择完整地区信息');
+            var theme = $.trim( $('.theme').val() );
+
+            var item = $('.item').find("option:selected").val();
+            var company = $('.company').find("option:selected").val();
+            var desc = $.trim( $('.demond-desc').find('textarea').val() );
+
+            var relation = $.trim( $('.relation').val() );
+            var bumen = $('.sel5').find('.liandong').find("option:selected").val();
+            var date = $.trim( $('.Wdate').val() );
+            
+           if (country == '国家' || province == '省份/周' || city == '城市' || theme == '' || item == '' || company == '' || desc==''||bumen==''||date==''||relation=='') {
+                alert('请完整填写信息');
+
                 return false;
             }
             $(country_id).val($("#country").find("option:selected").val());
@@ -98,7 +110,9 @@
             $(city_id).val($("#city").find("option:selected").val());
             // alert($(country_id).val() + ' ' + $(province_id).val() + ' ' + $(city_id).val());
 
+
         })
+
 
     </script>
     {% endjavascripts %}

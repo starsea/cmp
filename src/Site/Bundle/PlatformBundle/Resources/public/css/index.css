@@ -192,6 +192,7 @@ body {
   margin-top: 5px;
   background: url(../images/logo.png) no-repeat;
 }
+
 /* line 97, ../sass/index.scss */
 .head-con .head-conLogo span {
   display: inline-block;
@@ -208,7 +209,7 @@ body {
   height: 51px;
   background: url(../images/dot.png) left bottom repeat-x;
   padding-left: 450px;
-  margin-top: 18px;
+  padding-top: 18px;
 }
 /* line 111, ../sass/index.scss */
 .head-con ul li {
@@ -247,6 +248,9 @@ body {
 }
 /* line 140, ../sass/index.scss */
 .head-con ul li.cur a {
+  color: #333;
+}
+.head-con ul li.cur a:hover {
   color: #333;
 }
 /* line 146, ../sass/index.scss */
@@ -519,6 +523,10 @@ body {
   background: #A41F24;
   border: none;
   cursor: pointer;
+  vertical-align: middle;
+}
+.addDemond .demond-btn a.del{
+  margin-bottom: 12px;
 }
 
 /* line 337, ../sass/index.scss */
@@ -602,4 +610,4 @@ body {
     border: none;
     cursor: pointer;
 }
-.deleteForm{display: inline-block;}
+.deleteForm{display: inline-block;vertical-align: middle;_float:left;_display:inline;_margin-top:1px;}
