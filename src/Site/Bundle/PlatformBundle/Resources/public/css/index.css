@@ -4,6 +4,9 @@ html {
   _background-attachment: fixed;
 }
 
+div{
+    border: 1px solid red;
+}
 /* line 1, ../sass/_reset.scss */
 body {
   color: #112657;
