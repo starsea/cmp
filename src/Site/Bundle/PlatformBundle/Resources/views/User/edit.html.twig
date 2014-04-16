@@ -22,7 +22,7 @@
         </div>
         <div class="demond-theme">
             <strong>虎扑账号：</strong><br>
-            {{ form_widget(edit_form.hupuAccount , {'attr': {'class': 'theme'} }) }}
+            {{ form_widget(edit_form.hupuAccount , {'attr': {'class': 'zhanghao'} }) }}
         </div>
         <div class="demond-theme">
             <strong>账号密码：(不修改留空)</strong><br>
@@ -35,11 +35,11 @@
 
         <div class="demond-theme">
             <strong>手机号：</strong><br>
-            {{ form_widget(edit_form.phone , {'attr': {'class': 'theme'} }) }}
+            {{ form_widget(edit_form.phone , {'attr': {'class': 'phone'} }) }}
         </div>
         <div class="demond-theme">
             <strong>E-mail：</strong><br>
-            {{ form_widget(edit_form.email , {'attr': {'class': 'theme'} }) }}
+            {{ form_widget(edit_form.email , {'attr': {'class': 'email'} }) }}
         </div>
         <!-- <div class="demond-company">
             <strong>隶属角色：</strong><br>
@@ -67,7 +67,7 @@
 
         //判断两次密码输入是否一致
         $('.add').click(function () {
-            var val1 = trim($('.pwd').val());
+            /*var val1 = trim($('.pwd').val());
             var val2 = trim($('.confirm_pwd').val());
             if (val1 == '' || val2 == '') {
                 alert('密码不能为空');
@@ -76,6 +76,34 @@
             }
             if (val1 != val2) {
                 alert('两次输入的密码不正确');
+                return false;
+            }*/
+
+            var theme = $.trim( $('.theme').val() );
+       
+            var item = $('.item').find("option:selected").val();
+            var company = $('.company').find("option:selected").val();
+            var zhanghao = $.trim( $('.zhanghao').val() );
+            var phone = $.trim( $('.phone').val() );
+            var email = $.trim( $('.email').val() );
+
+            var reg = /^1(3[4-9]|5[012789]|8[78])\d{8}$/;
+            var reg1 = /^18[09]\d{8}$/;
+            var reg2 = /^1(3[0-2]|5[56]|8[56])\d{8}$/;
+            
+            var reg3 = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+
+            if (theme == '' || item == '' || company == '' || zhanghao==''||phone==''||email=='') {
+                alert('请完整填写信息');
+
+                return false;
+            }else if( !(reg.test(phone)||reg1.test(phone)||reg2.test(phone)) ){
+                alert('请填写正确的手机号码');
+
+                return false;
+            }else if( !(reg3.test(email)) ){
+                alert('请填写正确的邮箱');
+
                 return false;
             }
 

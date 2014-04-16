@@ -19,7 +19,7 @@
         </div>
         <div class="demond-company">
             <strong>单位性质：</strong><br>
-            {{ form_widget(edit_form.companyType) }}
+            {{ form_widget(edit_form.companyType, {'attr': {'class': 'company'} }) }}
         </div>
         <div class="selWrap">
             <div class="sel1">
@@ -85,14 +85,27 @@
             country = $("#country").find("option:selected").val();
             province = $("#province").find("option:selected").val();
             city = $("#city").find("option:selected").val();
-            if (country == '国家' || province == '省份/周' || city == '城市') {
-                alert('请选择完整地区信息');
+
+            var theme = $.trim( $('.theme').val() );
+       
+            var item = $('.item').find("option:selected").val();
+            var company = $('.company').find("option:selected").val();
+            var desc = $.trim( $('.demond-desc').find('textarea').val() );
+            var bumen = $('.sel5').find('.liandong').find("option:selected").val();
+            var date = $.trim( $('.Wdate').val() );
+            
+            if (country == '国家' || province == '省份/周' || city == '城市' || theme == '' || item == '' || company == '' || desc==''||bumen==''||date=='') {
+                alert('请完整填写信息');
+
                 return false;
             }
+           
             $(country_id).val($("#country").find("option:selected").val());
             $(province_id).val($("#province").find("option:selected").val());
             $(city_id).val($("#city").find("option:selected").val());
             // alert($(country_id).val() + ' ' + $(province_id).val() + ' ' + $(city_id).val());
+
+
 
         })
 
