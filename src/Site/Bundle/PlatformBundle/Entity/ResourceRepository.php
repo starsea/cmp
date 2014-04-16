@@ -33,7 +33,7 @@ class ResourceRepository extends EntityRepository
                 if ($field == 'updateTimeMin') {
                     $operator = '>=';
                 } else {
-                    $value = date('Y-m-d', strtotime($value) + 86400 - 1);
+                    $value = date('Y-m-d', strtotime($value) + 86400);
                     $operator = '<=';
                 }
                 $qb->andWhere('i.' . 'updateTime' . " {$operator} " . ':' . $field)
