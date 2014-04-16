@@ -36,7 +36,7 @@ class RequirementRepository extends EntityRepository
                 } else {
                     $value = date('Y-m-d', strtotime($value) + 86400 );
 
-                    $operator = '<=';
+                    $operator = '<';
                 }
                 $qb->andWhere('i.' . 'updateTime' . " {$operator} " . ':' . $field)
                     ->setParameter($field, $value);
