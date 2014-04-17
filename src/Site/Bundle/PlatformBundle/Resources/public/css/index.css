@@ -4,7 +4,6 @@ html {
   _background-attachment: fixed;
 }
 
-
 /* line 1, ../sass/_reset.scss */
 body {
   color: #112657;
@@ -611,4 +610,4 @@ body {
     border: none;
     cursor: pointer;
 }
-.deleteForm{display: inline-block;vertical-align: middle;_float:left;_display:inline;_margin-top:1px;}
+.deleteForm{display: inline-block;vertical-align: middle;*float:left;*display:inline;*margin-top:1px;}
