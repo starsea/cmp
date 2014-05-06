@@ -1,15 +1,22 @@
-symfony2  simple cms
-===========
+Cooperation Management Platform For Symfony2
+==================
 
 
-更新文档
+Environment
 ----------------------
-git pull origin master #拉取代码
+- php5.3+ (best php5.5+)
+- composer
+- opcache (not must need)
 
-安装静态文件  #(如果修改了css  js 也需要运行下面两步)
 
-- php app/console assets:install
-- php app/console  assetic:dump
 
-权限
-chmod -R 777 app/cache app/log  
+Usage
+----------------------
+- git clone
+- cd cmp && composer install     # install vender
+- vim app/config/parameters.yml  # edit u conf
+- chmod -R 777 app/cache app/log 
+- php app/console assets:install <--env=prod>
+- php app/console assetic:dump   <--env=prod>
+- php app/console  doctrine:schema:create # create db
+ 
